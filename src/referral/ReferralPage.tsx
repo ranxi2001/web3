@@ -9,6 +9,11 @@ import {
   ShieldCheck,
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
+import {
+  EarningsShowcase,
+  isEarningsShowcaseData,
+  type EarningsShowcaseData,
+} from '../components/EarningsShowcase'
 
 type Category = 'exchange' | 'web3' | 'card'
 type CategoryFilter = 'all' | Category
@@ -131,6 +136,7 @@ function ErrorState({ message }: { message: string }) {
 
 export function ReferralPage() {
   const [directory, setDirectory] = useState<ReferralDirectory | null>(null)
+  const [showcase, setShowcase] = useState<EarningsShowcaseData | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all')
   const [copiedId, setCopiedId] = useState<string | null>(null)
@@ -156,7 +162,28 @@ export function ReferralPage() {
       }
     }
 
+    async function loadShowcase() {
+      try {
+        const response = await fetch('./data/ledger.json', {
+          cache: 'no-cache',
+          signal: controller.signal,
+        })
+        if (!response.ok) return
+
+        const payload: unknown = await response.json()
+        if (!payload || typeof payload !== 'object') return
+
+        const candidate = (payload as { showcase?: unknown }).showcase
+        if (isEarningsShowcaseData(candidate)) setShowcase(candidate)
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.warn('Unable to load earnings showcase', error)
+        }
+      }
+    }
+
     void loadDirectory()
+    void loadShowcase()
     return () => controller.abort()
   }, [])
 
@@ -235,6 +262,14 @@ export function ReferralPage() {
             </div>
           </dl>
         </section>
+
+        {showcase && (
+          <EarningsShowcase
+            showcase={showcase}
+            ctaHref="#directory-heading"
+            variant="referral"
+          />
+        )}
 
         <section className="security-notice" aria-label="安全提示">
           <ShieldCheck aria-hidden="true" size={22} />

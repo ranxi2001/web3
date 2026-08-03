@@ -54,6 +54,56 @@ const assertDate = (value: string, label: string) => {
 }
 
 assertDate(ledger.generatedAt, 'generatedAt')
+assertDate(ledger.showcase.snapshotAt, 'showcase.snapshotAt')
+
+if (
+  !closeEnough(
+    ledger.showcase.platformFeeRate,
+    ledger.methodology.platformFeeRate,
+    0.000000001,
+  )
+) {
+  errors.push('showcase: platform fee rate must match methodology')
+}
+if (
+  !closeEnough(
+    ledger.showcase.customerShareRate,
+    ledger.methodology.defaultCustomerShareRate,
+    0.000000001,
+  )
+) {
+  errors.push('showcase: customer share rate must match methodology')
+}
+
+const expectedShowcaseEffectiveRate =
+  ledger.showcase.platformFeeRate * ledger.showcase.customerShareRate
+if (
+  !closeEnough(
+    ledger.showcase.effectiveRebateRate,
+    expectedShowcaseEffectiveRate,
+    0.000000001,
+  )
+) {
+  errors.push(
+    'showcase: effective rate must equal platform fee rate x customer share rate',
+  )
+}
+
+const expectedShowcaseRebateUsd =
+  ledger.showcase.volumeUsd * ledger.showcase.effectiveRebateRate
+if (
+  !closeEnough(
+    ledger.showcase.estimatedRebateUsd,
+    expectedShowcaseRebateUsd,
+    0.02,
+  )
+) {
+  errors.push('showcase: estimated rebate must equal volume x effective rate')
+}
+
+if (!ledger.showcase.lastMonth.placeholder) {
+  errors.push('showcase.lastMonth: unverified earnings must remain a placeholder')
+}
 assertUnique(
   ledger.customers.map((customer) => customer.publicId),
   'customer publicId',
@@ -119,6 +169,9 @@ for (const customer of ledger.customers) {
 
 for (const settlement of ledger.settlements) {
   const prefix = settlement.batchId
+  if ('placeholder' in settlement) {
+    errors.push(`${prefix}: placeholder showcase data must not enter settlements`)
+  }
   if (!customerIds.has(settlement.customerPublicId)) {
     errors.push(`${prefix}: references an unknown customer`)
   }

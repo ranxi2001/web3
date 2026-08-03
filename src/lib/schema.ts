@@ -52,6 +52,27 @@ export const settlementSchema = z.object({
   explorerUrl: z.string().url().nullable(),
   status: z.enum(['confirmed', 'awaiting_transfer', 'paid', 'adjusted']),
   note: z.string().min(1).nullable(),
+  placeholder: z.never().optional(),
+})
+
+export const showcaseSchema = z.object({
+  id: z.string().min(1),
+  maskedWallet: z.string().min(1),
+  network: z.string().min(1),
+  volumeUsd: z.number().nonnegative(),
+  platformFeeRate: z.number().min(0).max(1),
+  customerShareRate: z.number().min(0).max(1),
+  effectiveRebateRate: z.number().min(0).max(1),
+  estimatedRebateUsd: z.number().nonnegative(),
+  snapshotAt: z.string().min(1),
+  sourceLabel: z.string().min(1),
+  lastMonth: z.object({
+    label: z.string().min(1),
+    settledUsd: z.number().nonnegative(),
+    asset: z.string().min(1),
+    placeholder: z.literal(true),
+    note: z.string().min(1),
+  }),
 })
 
 export const customerLedgerSchema = z.object({
@@ -88,6 +109,7 @@ export const publicLedgerSchema = z.object({
     priceRule: z.string().min(1),
     revisionRule: z.string().min(1),
   }),
+  showcase: showcaseSchema,
   sources: z.array(
     z.object({
       id: z.string().min(1),
@@ -104,4 +126,5 @@ export type ChainId = z.infer<typeof chainIdSchema>
 export type ChainLedger = z.infer<typeof chainLedgerSchema>
 export type CustomerLedger = z.infer<typeof customerLedgerSchema>
 export type Settlement = z.infer<typeof settlementSchema>
+export type Showcase = z.infer<typeof showcaseSchema>
 export type PublicLedger = z.infer<typeof publicLedgerSchema>

@@ -96,6 +96,55 @@ describe('public ledger totals', () => {
   })
 })
 
+describe('earnings showcase', () => {
+  it('publishes the masked Solana example with reproducible rebate math', () => {
+    const { showcase } = ledger
+
+    expect(showcase).toMatchObject({
+      id: 'gmgn-solana-600k-2026-08',
+      maskedWallet: '6EDJ...3xj5',
+      network: 'Solana',
+      volumeUsd: 600900,
+      platformFeeRate: 0.01,
+      customerShareRate: 0.3,
+      effectiveRebateRate: 0.003,
+      estimatedRebateUsd: 1802.7,
+      sourceLabel: 'GMGN 钱包页人工快照',
+    })
+    expect(Date.parse(showcase.snapshotAt)).not.toBeNaN()
+    expect(showcase.effectiveRebateRate).toBeCloseTo(
+      showcase.platformFeeRate * showcase.customerShareRate,
+      9,
+    )
+    expect(showcase.estimatedRebateUsd).toBeCloseTo(
+      showcase.volumeUsd * showcase.effectiveRebateRate,
+      2,
+    )
+  })
+
+  it('keeps the prior-month placeholder outside settlement records', () => {
+    expect(ledger.showcase.lastMonth).toEqual({
+      label: '2026年7月',
+      settledUsd: 300,
+      asset: 'U',
+      placeholder: true,
+      note: '展示占位数据，仅用于收益案例说明，不代表已付款，也无链上付款凭证。',
+    })
+    expect(
+      ledgerJson.settlements.some((settlement) => 'placeholder' in settlement),
+    ).toBe(false)
+    expect(() =>
+      publicLedgerSchema.parse({
+        ...ledgerJson,
+        settlements: [
+          { ...ledgerJson.settlements[0], placeholder: true },
+          ...ledgerJson.settlements.slice(1),
+        ],
+      }),
+    ).toThrow()
+  })
+})
+
 describe('ledger validation helpers', () => {
   it('matches equivalent settlement periods across timezone representations', () => {
     expect(

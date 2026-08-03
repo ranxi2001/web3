@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "ledgerRevision": "demo-2026-08-03.1",
-  "generatedAt": "2026-08-03T14:30:00.000Z",
+  "ledgerRevision": "demo-2026-08-04.1",
+  "generatedAt": "2026-08-04T02:15:00.000Z",
   "timezone": "Asia/Shanghai",
   "isDemo": true,
   "title": "返佣公开账本",
@@ -13,6 +13,25 @@
     "rounding": "链上数量保留 4 至 8 位；USDT 展示保留 2 位，台账计算保留原始精度。",
     "priceRule": "待结算金额按快照时点价格预估；人工付款时按批次锁价记录实际支付数量。",
     "revisionRule": "历史记录不覆盖。修订以新批次追加，并写明调整原因。"
+  },
+  "showcase": {
+    "id": "gmgn-solana-600k-2026-08",
+    "maskedWallet": "6EDJ...3xj5",
+    "network": "Solana",
+    "volumeUsd": 600900,
+    "platformFeeRate": 0.01,
+    "customerShareRate": 0.3,
+    "effectiveRebateRate": 0.003,
+    "estimatedRebateUsd": 1802.70,
+    "snapshotAt": "2026-08-04T10:00:00+08:00",
+    "sourceLabel": "GMGN 钱包页人工快照",
+    "lastMonth": {
+      "label": "2026年7月",
+      "settledUsd": 300,
+      "asset": "U",
+      "placeholder": true,
+      "note": "展示占位数据，仅用于收益案例说明，不代表已付款，也无链上付款凭证。"
+    }
   },
   "sources": [
     {
