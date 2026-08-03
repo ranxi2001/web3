@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+data/private/*
+!data/private/.gitkeep
+!data/private/clients.example.json
+*.log
+.DS_Store
+
+# Reference screenshots may contain customer information.
+image*.png

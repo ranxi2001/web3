@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "ledgerRevision": "demo-2026-08-03.1",
+  "generatedAt": "2026-08-03T14:30:00.000Z",
+  "timezone": "Asia/Shanghai",
+  "isDemo": true,
+  "title": "返佣公开账本",
+  "disclosure": "本页为只读对账工具。返佣由运营人员线下复核并人工转账，网站不会连接钱包或发起链上交易。",
+  "methodology": {
+    "platformFeeRate": 0.01,
+    "defaultCustomerShareRate": 0.3,
+    "formula": "确认交易量 × GMGN 手续费率 1% × 客户分成比例 30% = 预估返佣",
+    "rounding": "链上数量保留 4 至 8 位；USDT 展示保留 2 位，台账计算保留原始精度。",
+    "priceRule": "待结算金额按快照时点价格预估；人工付款时按批次锁价记录实际支付数量。",
+    "revisionRule": "历史记录不覆盖。修订以新批次追加，并写明调整原因。"
+  },
+  "sources": [
+    {
+      "id": "gmgn-activity",
+      "label": "GMGN Portfolio Activity",
+      "role": "提供钱包逐笔活动、观察交易量与交易笔数，不单独证明推荐归因。",
+      "url": "https://github.com/GMGNAI/gmgn-skills/blob/main/skills/gmgn-portfolio/SKILL.md"
+    },
+    {
+      "id": "gmgn-referral",
+      "label": "GMGN Referral Report",
+      "role": "由运营人员登录 GMGN 推荐报告后人工确认推荐交易量与佣金。",
+      "url": "https://docs.gmgn.ai/index/referral-link"
+    },
+    {
+      "id": "gmgn-fees",
+      "label": "GMGN Fees",
+      "role": "公开说明单笔交易收取 1% GMGN 手续费。",
+      "url": "https://docs.gmgn.ai/index/gmgn-fees-settings"
+    }
+  ],
+  "customers": [
+    {
+      "publicId": "RL-8F2K-91Q",
+      "alias": "DEMO / 001",
+      "visibility": "pseudonymous",
+      "maskedSettlementAddress": "0x1111••••1111",
+      "walletLookupHashes": [
+        "3b684dc7da6c92069957b1591f39e324386b6f0b3268fcd4168d3c70bab6b8dc"
+      ],
+      "periodStart": "2026-08-01T00:00:00+08:00",
+      "periodEnd": "2026-08-31T23:59:59+08:00",
+      "confirmedAt": "2026-08-03T14:15:00.000Z",
+      "settlementStatus": "awaiting_manual_payment",
+      "chains": [
+        {
+          "chain": "bsc",
+          "network": "BNB Smart Chain",
+          "asset": "BNB",
+          "openingVolumeNative": 1676.963,
+          "closingVolumeNative": 2316.5006,
+          "confirmedVolumeNative": 639.5376,
+          "confirmedVolumeUsd": 377461.49,
+          "observedVolumeUsd": 377331.22,
+          "observedTradeCount": 1265,
+          "platformFeeRate": 0.01,
+          "customerShareRate": 0.3,
+          "effectiveRebateRate": 0.003,
+          "estimatedRebateNative": 1.9186128,
+          "estimatedRebateUsd": 1132.38,
+          "assetPriceUsd": 590.21,
+          "priceAt": "2026-08-03T13:57:43.000Z",
+          "snapshotAt": "2026-08-03T14:12:00.000Z",
+          "status": "current",
+          "source": {
+            "confirmed": "gmgn_referral_report",
+            "observed": "gmgn_portfolio_activity"
+          }
+        },
+        {
+          "chain": "sol",
+          "network": "Solana",
+          "asset": "SOL",
+          "openingVolumeNative": 1223.0215,
+          "closingVolumeNative": 1397.7744,
+          "confirmedVolumeNative": 174.7529,
+          "confirmedVolumeUsd": 12733.72,
+          "observedVolumeUsd": 12733.72,
+          "observedTradeCount": 342,
+          "platformFeeRate": 0.01,
+          "customerShareRate": 0.3,
+          "effectiveRebateRate": 0.003,
+          "estimatedRebateNative": 0.5242587,
+          "estimatedRebateUsd": 38.2,
+          "assetPriceUsd": 72.867,
+          "priceAt": "2026-08-03T13:57:43.000Z",
+          "snapshotAt": "2026-08-03T14:11:00.000Z",
+          "status": "current",
+          "source": {
+            "confirmed": "gmgn_referral_report",
+            "observed": "gmgn_portfolio_activity"
+          }
+        },
+        {
+          "chain": "eth",
+          "network": "Ethereum",
+          "asset": "ETH",
+          "openingVolumeNative": 0,
+          "closingVolumeNative": 18.942,
+          "confirmedVolumeNative": 18.942,
+          "confirmedVolumeUsd": 35340.09,
+          "observedVolumeUsd": 35340.09,
+          "observedTradeCount": 88,
+          "platformFeeRate": 0.01,
+          "customerShareRate": 0.3,
+          "effectiveRebateRate": 0.003,
+          "estimatedRebateNative": 0.056826,
+          "estimatedRebateUsd": 106.02,
+          "assetPriceUsd": 1865.7,
+          "priceAt": "2026-08-03T13:57:43.000Z",
+          "snapshotAt": "2026-08-03T14:09:00.000Z",
+          "status": "current",
+          "source": {
+            "confirmed": "gmgn_referral_report",
+            "observed": "gmgn_portfolio_activity"
+          }
+        },
+        {
+          "chain": "base",
+          "network": "Base",
+          "asset": "ETH",
+          "openingVolumeNative": 0,
+          "closingVolumeNative": 11.3542,
+          "confirmedVolumeNative": 11.3542,
+          "confirmedVolumeUsd": 21183.53,
+          "observedVolumeUsd": 21183.53,
+          "observedTradeCount": 71,
+          "platformFeeRate": 0.01,
+          "customerShareRate": 0.3,
+          "effectiveRebateRate": 0.003,
+          "estimatedRebateNative": 0.0340626,
+          "estimatedRebateUsd": 63.55,
+          "assetPriceUsd": 1865.7,
+          "priceAt": "2026-08-03T13:57:43.000Z",
+          "snapshotAt": "2026-08-03T14:08:00.000Z",
+          "status": "current",
+          "source": {
+            "confirmed": "gmgn_referral_report",
+            "observed": "gmgn_portfolio_activity"
+          }
+        },
+        {
+          "chain": "robinhood",
+          "network": "Robinhood Chain",
+          "asset": "ETH",
+          "openingVolumeNative": 72.1003,
+          "closingVolumeNative": 115.9026,
+          "confirmedVolumeNative": 43.8023,
+          "confirmedVolumeUsd": 81721.95,
+          "observedVolumeUsd": 81721.95,
+          "observedTradeCount": 204,
+          "platformFeeRate": 0.01,
+          "customerShareRate": 0.3,
+          "effectiveRebateRate": 0.003,
+          "estimatedRebateNative": 0.1314069,
+          "estimatedRebateUsd": 245.17,
+          "assetPriceUsd": 1865.7,
+          "priceAt": "2026-08-03T13:57:43.000Z",
+          "snapshotAt": "2026-08-03T14:06:00.000Z",
+          "status": "current",
+          "source": {
+            "confirmed": "gmgn_referral_report",
+            "observed": "gmgn_portfolio_activity"
+          }
+        }
+      ]
+    }
+  ],
+  "settlements": [
+    {
+      "batchId": "SET-2026-07-001",
+      "customerPublicId": "RL-8F2K-91Q",
+      "periodStart": "2026-07-01T00:00:00+08:00",
+      "periodEnd": "2026-07-31T23:59:59+08:00",
+      "chains": ["sol", "bsc", "eth", "base", "robinhood"],
+      "calculatedUsd": 1386.24,
+      "paymentChain": "bsc",
+      "paidAsset": "BNB",
+      "paidAmount": 2.4,
+      "lockedPriceUsd": 577.6,
+      "paidUsd": 1386.24,
+      "paidAt": "2026-08-01T09:16:00+08:00",
+      "transactionHash": "0x7a3e4c7f8b2c948aed94b684290450f47cf83da430fa5b0bb1632ae3e7a1d201",
+      "explorerUrl": null,
+      "status": "paid",
+      "note": "演示数据：实际发布时请替换为真实交易哈希和区块浏览器链接。"
+    },
+    {
+      "batchId": "SET-2026-06-001",
+      "customerPublicId": "RL-8F2K-91Q",
+      "periodStart": "2026-06-01T00:00:00+08:00",
+      "periodEnd": "2026-06-30T23:59:59+08:00",
+      "chains": ["sol", "bsc", "eth", "base", "robinhood"],
+      "calculatedUsd": 1687.4,
+      "paymentChain": "bsc",
+      "paidAsset": "BNB",
+      "paidAmount": 2.86,
+      "lockedPriceUsd": 590,
+      "paidUsd": 1687.4,
+      "paidAt": "2026-07-03T11:42:00+08:00",
+      "transactionHash": "0x8c1b54d75c93e54f4ab562030adf0e28ca8ca77ac8de5c82aa11e6db087b8e32",
+      "explorerUrl": null,
+      "status": "paid",
+      "note": "演示数据：历史批次按实际付款锁价记录。"
+    }
+  ]
+}

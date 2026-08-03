@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "source": {
+    "provider": "VLink / tosky",
+    "page": "https://vlink.cc/tosky",
+    "checkedAt": "2026-08-03T16:26:26.206Z",
+    "pageBuildId": "H-XB945kf2hLwDTUQ6nOU"
+  },
+  "entries": [
+    {
+      "id": "okx-green-channel",
+      "platform": "OKX",
+      "title": "OKX 注册绿色通道",
+      "category": "exchange",
+      "benefit": "来源页原文：OKX注册绿色通道 🎁 注册即领50元红包 🧧 / 手动输入20%返佣邀请码？点击复制",
+      "url": "https://www.firgrouxywebb.com/join/88596413",
+      "targetDomain": "www.firgrouxywebb.com",
+      "domainKind": "partner",
+      "referralCode": "88596413",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_7D3od2GktB.png",
+      "sourceItems": [
+        {
+          "id": "uwDun_zxXo",
+          "title": "OKX注册绿色通道 🎁\n注册即领50元红包 🧧"
+        },
+        {
+          "id": "pvoiWtAlph",
+          "title": "手动输入20%返佣邀请码？点击复制"
+        }
+      ]
+    },
+    {
+      "id": "okx-official",
+      "platform": "OKX",
+      "title": "OKX 官网注册",
+      "category": "exchange",
+      "benefit": "来源页原文：欧易注册（需要🪜） / 手动输入20%返佣邀请码？点击复制",
+      "url": "https://www.okx.com/join/88596413",
+      "targetDomain": "www.okx.com",
+      "domainKind": "official",
+      "referralCode": "88596413",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_TmaXpqn_9X.png",
+      "sourceItems": [
+        {
+          "id": "RpySBzzyYI",
+          "title": "欧易注册（需要🪜）"
+        },
+        {
+          "id": "pvoiWtAlph",
+          "title": "手动输入20%返佣邀请码？点击复制"
+        }
+      ]
+    },
+    {
+      "id": "binance-exchange",
+      "platform": "Binance",
+      "title": "币安注册",
+      "category": "exchange",
+      "benefit": "来源页原文：币安注册（返佣）",
+      "url": "https://www.maxweb.red/join?ref=TOSKY",
+      "targetDomain": "www.maxweb.red",
+      "domainKind": "partner",
+      "referralCode": "TOSKY",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_ESSqSw1R3R.png",
+      "sourceItems": [
+        {
+          "id": "MRjcucrZ3q",
+          "title": "币安注册（返佣）"
+        }
+      ]
+    },
+    {
+      "id": "bybit-exchange",
+      "platform": "Bybit",
+      "title": "Bybit 注册",
+      "category": "exchange",
+      "benefit": "来源页原文：Bybit注册（返佣33%）",
+      "url": "https://partner.bybit.com/b/ONEFLY",
+      "targetDomain": "partner.bybit.com",
+      "domainKind": "official",
+      "referralCode": "ONEFLY",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_oeodI5Lx8O.png",
+      "sourceItems": [
+        {
+          "id": "UWbyjJf69E",
+          "title": "Bybit注册（返佣33%）"
+        }
+      ]
+    },
+    {
+      "id": "bitget-exchange",
+      "platform": "Bitget",
+      "title": "Bitget 注册",
+      "category": "exchange",
+      "benefit": "来源页原文：Bitget注册（送VIP+返佣）",
+      "url": "https://partner.hdmune.cn/bg/v92gsluk",
+      "targetDomain": "partner.hdmune.cn",
+      "domainKind": "partner",
+      "referralCode": "v92gsluk",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_p2gNDJilKX.png",
+      "sourceItems": [
+        {
+          "id": "WyExf7j1eY",
+          "title": "Bitget注册（送VIP+返佣）"
+        }
+      ]
+    },
+    {
+      "id": "gate-exchange",
+      "platform": "Gate",
+      "title": "Gate 芝麻开门注册",
+      "category": "exchange",
+      "benefit": "来源页原文：Gate芝麻开门注册（返佣）",
+      "url": "https://www.gatesite.space/share/TOSKYETH",
+      "targetDomain": "www.gatesite.space",
+      "domainKind": "partner",
+      "referralCode": "TOSKYETH",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_UfcLCluA2g.png",
+      "sourceItems": [
+        {
+          "id": "vhF-_BlTjy",
+          "title": "Gate芝麻开门注册（返佣）"
+        }
+      ]
+    },
+    {
+      "id": "gmgn-web3",
+      "platform": "GMGN",
+      "title": "GMGN 链上交易工具",
+      "category": "web3",
+      "benefit": "来源页原文：GMGN 打土狗玩meme",
+      "url": "https://gmgn.ai/r/cLf0ZwzZ",
+      "targetDomain": "gmgn.ai",
+      "domainKind": "official",
+      "referralCode": "cLf0ZwzZ",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_Q5IcmVR_eL.jpg",
+      "sourceItems": [
+        {
+          "id": "TvRxqrjxrd",
+          "title": "GMGN 打土狗玩meme"
+        }
+      ]
+    },
+    {
+      "id": "okx-web3-wallet",
+      "platform": "OKX Web3",
+      "title": "OKX Web3 钱包",
+      "category": "web3",
+      "benefit": "来源页原文：OKX web3钱包（20%返佣）",
+      "url": "https://web3.okx.com/join/ONEFLY",
+      "targetDomain": "web3.okx.com",
+      "domainKind": "official",
+      "referralCode": "ONEFLY",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_gs8Ji7ktxy.jpg",
+      "sourceItems": [
+        {
+          "id": "ZOSENShlRL",
+          "title": "OKX web3钱包（20%返佣）"
+        }
+      ]
+    },
+    {
+      "id": "binance-wallet",
+      "platform": "Binance Wallet",
+      "title": "币安钱包",
+      "category": "web3",
+      "benefit": "来源页原文：币安钱包 （20%返佣）",
+      "url": "https://web3.binance.com/referral?ref=EIHZY58K",
+      "targetDomain": "web3.binance.com",
+      "domainKind": "official",
+      "referralCode": "EIHZY58K",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_UwDacw_TAI.jpg",
+      "sourceItems": [
+        {
+          "id": "N74mq5jOem",
+          "title": "币安钱包 （20%返佣）"
+        }
+      ]
+    },
+    {
+      "id": "bybit-card",
+      "platform": "Bybit Card",
+      "title": "Bybit Card U 卡",
+      "category": "card",
+      "benefit": "来源页原文：Bybit Card U卡（返佣10%）",
+      "url": "https://www.bybit.com/cards/?ref=AAVNKL3&source=applet_invite",
+      "targetDomain": "www.bybit.com",
+      "domainKind": "official",
+      "referralCode": "AAVNKL3",
+      "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_ZlBcnLbcfU.jpg",
+      "sourceItems": [
+        {
+          "id": "pE0cVEVJ-Z",
+          "title": "Bybit Card U卡（返佣10%）"
+        }
+      ]
+    }
+  ]
+}
