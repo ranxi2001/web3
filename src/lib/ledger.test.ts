@@ -2,6 +2,7 @@ import ledgerJson from '../../public/data/ledger.json'
 import { describe, expect, it } from 'vitest'
 import {
   findCustomer,
+  formatUsd,
   hashWalletAddress,
   normalizeWalletAddress,
   pendingRebateUsd,
@@ -45,6 +46,10 @@ describe('wallet lookup', () => {
 })
 
 describe('public ledger totals', () => {
+  it('formats whole-dollar summaries without conflicting fraction options', () => {
+    expect(formatUsd(528440.78, 0)).toBe('$528,441')
+  })
+
   it('keeps confirmed volume, observed volume, and estimated rebate separate', () => {
     const totals = sumChains(demoCustomer.chains)
     expect(totals.confirmedVolumeUsd).toBeCloseTo(528440.78, 2)

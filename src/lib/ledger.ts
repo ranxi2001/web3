@@ -117,7 +117,7 @@ export const formatUsd = (value: number, maximumFractionDigits = 2) =>
     style: 'currency',
     currency: 'USD',
     currencyDisplay: 'narrowSymbol',
-    minimumFractionDigits: 2,
+    minimumFractionDigits: Math.min(2, maximumFractionDigits),
     maximumFractionDigits,
   }).format(value)
 
