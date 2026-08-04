@@ -47,7 +47,7 @@ const SELECTIONS: Selection[] = [
     platform: 'OKX',
     title: 'OKX 注册绿色通道',
     category: 'exchange',
-    expectedDomain: 'www.firgrouxywebb.com',
+    expectedDomain: 'onefly.top/posts/8888.html',
     domainKind: 'partner',
   },
   {
