@@ -216,11 +216,11 @@ export function ReferralPage() {
     <div className="referral-shell">
       <header className="referral-topbar">
         <a className="referral-brand" href="./" aria-label="返回返佣公开账本">
-          <span className="referral-brand__mark" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
+          <img
+            className="referral-brand__mark"
+            src={`${import.meta.env.BASE_URL}brand-mark.svg`}
+            alt=""
+          />
           <span>
             <strong>返佣公开账本</strong>
             <small>REBATE LEDGER</small>

@@ -102,27 +102,10 @@ select:focus-visible {
 }
 
 .brand__mark {
-  position: relative;
   width: 31px;
   height: 31px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 3px;
-  transform: rotate(-4deg);
-}
-
-.brand__mark span {
   display: block;
-  background: var(--green-bright);
-}
-
-.brand__mark span:nth-child(1) {
-  grid-row: 1 / span 2;
-}
-
-.brand__mark span:nth-child(3) {
-  background: #f3bd54;
+  flex: 0 0 auto;
 }
 
 .brand__name {

@@ -11,11 +11,11 @@ export function SiteHeader({ generatedAt, onMethodology }: SiteHeaderProps) {
     <header className="site-header">
       <div className="site-header__inner">
         <a className="brand" href="./index.html" aria-label="返佣公开账本首页">
-          <span className="brand__mark" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
+          <img
+            className="brand__mark"
+            src={`${import.meta.env.BASE_URL}brand-mark.svg`}
+            alt=""
+          />
           <span className="brand__name">
             返佣公开账本
             <small>REBATE LEDGER</small>

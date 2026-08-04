@@ -90,25 +90,8 @@ a:focus-visible {
 .referral-brand__mark {
   width: 31px;
   height: 31px;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 3px;
-  transform: rotate(-4deg);
-}
-
-.referral-brand__mark span {
   display: block;
-  background: var(--green-bright);
-}
-
-.referral-brand__mark span:nth-child(1) {
-  grid-row: 1 / span 2;
-}
-
-.referral-brand__mark span:nth-child(3) {
-  background: #f3bd54;
+  flex: 0 0 auto;
 }
 
 .referral-brand strong,
