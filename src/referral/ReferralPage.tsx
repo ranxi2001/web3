@@ -1,16 +1,15 @@
 import {
+  ArrowRight,
   Check,
   Copy,
   Database,
   ExternalLink,
   Globe2,
-  Link2,
   LoaderCircle,
-  ShieldCheck,
+  TrendingUp,
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import {
-  EarningsShowcase,
   isEarningsShowcaseData,
   type EarningsShowcaseData,
 } from '../components/EarningsShowcase'
@@ -63,6 +62,8 @@ const CATEGORY_LABELS: Record<Category, string> = {
   card: '支付卡',
 }
 
+const VOLUME_STEPS = [25_000, 75_000, 150_000, 300_000, 600_000]
+
 function isReferralDirectory(value: unknown): value is ReferralDirectory {
   if (!value || typeof value !== 'object') return false
 
@@ -85,16 +86,10 @@ function isReferralDirectory(value: unknown): value is ReferralDirectory {
   )
 }
 
-function formatCheckedAt(value: string) {
-  const timestamp = new Date(value)
-  if (Number.isNaN(timestamp.getTime())) return value
-
-  return new Intl.DateTimeFormat('zh-CN', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-    hour12: false,
-    timeZone: 'Asia/Shanghai',
-  }).format(timestamp)
+function formatCompactUsd(value: number) {
+  if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`
+  if (value >= 1_000) return `$${Math.round(value / 1_000)}K`
+  return `$${Math.round(value)}`
 }
 
 async function copyToClipboard(text: string) {
@@ -133,6 +128,53 @@ function ErrorState({ message }: { message: string }) {
       <p>{message}</p>
       <a href="./referral.html">重新载入</a>
     </main>
+  )
+}
+
+function RebateMotion({ effectiveRate }: { effectiveRate: number }) {
+  const [step, setStep] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+
+    const interval = window.setInterval(() => {
+      setStep((current) => (current + 1) % VOLUME_STEPS.length)
+    }, 1600)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
+  const volume = VOLUME_STEPS[step]
+  const estimatedRebate = volume * effectiveRate
+
+  return (
+    <section className="rebate-motion" aria-labelledby="rebate-motion-title">
+      <div className="rebate-motion__intro">
+        <span className="rebate-motion__kicker">
+          <TrendingUp aria-hidden="true" size={15} />
+          月度返佣测算
+        </span>
+        <h1 id="rebate-motion-title">交易量增长，返佣同步增长</h1>
+        <p>按 {(effectiveRate * 100).toFixed(2)}% 有效返佣率预计</p>
+      </div>
+
+      <div className="rebate-motion__metrics">
+        <div className="rebate-motion__metric">
+          <span>月交易量</span>
+          <strong key={`volume-${step}`}>{formatCompactUsd(volume)}</strong>
+        </div>
+        <ArrowRight className="rebate-motion__arrow" aria-hidden="true" size={22} />
+        <div className="rebate-motion__metric rebate-motion__metric--result">
+          <span>预计月返佣</span>
+          <strong key={`rebate-${step}`}>{formatCompactUsd(estimatedRebate)}</strong>
+        </div>
+        <div className="rebate-motion__bars" aria-hidden="true">
+          {VOLUME_STEPS.map((item, index) => (
+            <span className={index <= step ? 'is-active' : ''} key={item} />
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -209,9 +251,6 @@ export function ReferralPage() {
   if (loadError) return <ErrorState message={loadError} />
   if (!directory) return <LoadingState />
 
-  const platformCount = new Set(directory.entries.map((entry) => entry.platform)).size
-  const checkedAt = formatCheckedAt(directory.source.checkedAt)
-
   return (
     <div className="referral-shell">
       <header className="referral-topbar">
@@ -237,57 +276,13 @@ export function ReferralPage() {
       </header>
 
       <main>
-        <section className="referral-hero" aria-labelledby="referral-title">
-          <div className="referral-hero__copy">
-            <div className="referral-eyebrow">
-              <span className="status-dot" aria-hidden="true" />
-              PUBLIC DIRECTORY · READ ONLY
-            </div>
-            <h1 id="referral-title">推荐入口目录</h1>
-            <p>
-              集中核对平台入口、目标域名与邀请码。优惠说明按来源页原文整理，实际权益以注册落地页为准。
-            </p>
-          </div>
-
-          <dl className="referral-summary" aria-label="推荐目录摘要">
-            <div>
-              <dt>公开入口</dt>
-              <dd>{directory.entries.length}</dd>
-            </div>
-            <div>
-              <dt>覆盖平台</dt>
-              <dd>{platformCount}</dd>
-            </div>
-            <div className="referral-summary__wide">
-              <dt>最近核对 · 北京时间</dt>
-              <dd>{checkedAt}</dd>
-            </div>
-          </dl>
-        </section>
-
-        {showcase && (
-          <EarningsShowcase
-            showcase={showcase}
-            ctaHref="#directory-heading"
-            variant="referral"
-          />
-        )}
-
-        <section className="security-notice" aria-label="安全提示">
-          <ShieldCheck aria-hidden="true" size={22} />
-          <div>
-            <strong>安全核对</strong>
-            <p>
-              本页不会连接钱包，也不会索取私钥、助记词或验证码。标记为“推广跳转”的入口使用合作域名，登录、充值或交易前请再次确认最终落地域名。
-            </p>
-          </div>
-        </section>
+        <RebateMotion effectiveRate={showcase?.effectiveRebateRate ?? 0.003} />
 
         <section className="referral-directory" aria-labelledby="directory-heading">
           <div className="directory-toolbar">
             <div>
-              <span className="directory-kicker">DIRECTORY / 01</span>
-              <h2 id="directory-heading">入口清单</h2>
+              <span className="directory-kicker">注册入口</span>
+              <h2 id="directory-heading">选择平台，立即注册</h2>
             </div>
 
             <div className="category-filter" aria-label="按入口类型筛选">
@@ -307,10 +302,10 @@ export function ReferralPage() {
 
           <div className="directory-table" aria-label="推荐入口列表">
             <div className="directory-columns" aria-hidden="true">
-              <span>平台 / 来源记录</span>
+              <span>平台</span>
               <span>权益 / 邀请码</span>
               <span>目标域名</span>
-              <span>访问</span>
+              <span>注册</span>
             </div>
 
             <div className="directory-rows">
@@ -329,9 +324,6 @@ export function ReferralPage() {
                           <span>{CATEGORY_LABELS[entry.category]}</span>
                         </div>
                         <h3>{entry.title}</h3>
-                        <p className="source-record">
-                          SOURCE · {entry.sourceItems.map((item) => item.id).join(' + ')}
-                        </p>
                       </div>
                     </div>
 
@@ -369,7 +361,7 @@ export function ReferralPage() {
                         rel="noopener noreferrer sponsored"
                         aria-label={`前往 ${entry.platform}，将在新标签页打开`}
                       >
-                        前往
+                        立即注册
                         <ExternalLink aria-hidden="true" size={15} />
                       </a>
                     </div>
@@ -383,49 +375,6 @@ export function ReferralPage() {
             当前显示 {visibleEntries.length} / {directory.entries.length} 个入口
           </p>
           <p className="sr-only" aria-live="polite">{copyMessage}</p>
-        </section>
-
-        <section className="source-audit" aria-labelledby="source-heading">
-          <div className="source-audit__heading">
-            <Database aria-hidden="true" size={20} />
-            <div>
-              <span>PROVENANCE / 02</span>
-              <h2 id="source-heading">来源与更新</h2>
-            </div>
-          </div>
-
-          <div className="source-audit__grid">
-            <div>
-              <h3>公开来源</h3>
-              <a
-                href={directory.source.page}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Link2 aria-hidden="true" size={15} />
-                vlink.cc/tosky
-                <ExternalLink aria-hidden="true" size={14} />
-              </a>
-              <a
-                href={directory.source.okxMaterialPage}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Link2 aria-hidden="true" size={15} />
-                OKX 官方素材库
-                <ExternalLink aria-hidden="true" size={14} />
-              </a>
-              <p>页面记录保留 VLink 与 Notion 原始条目 ID，便于逐项复核。</p>
-            </div>
-            <div>
-              <h3>静态快照</h3>
-              <p>核对时间：{checkedAt}。目录随数据文件更新，不代表平台条款实时不变。</p>
-            </div>
-            <div>
-              <h3>结算边界</h3>
-              <p>本页仅提供推荐入口；返佣统计与人工转账结算请返回公开账本查看。</p>
-            </div>
-          </div>
         </section>
       </main>
 

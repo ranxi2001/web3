@@ -149,151 +149,157 @@ a:focus-visible {
   margin: 0 auto;
 }
 
-.referral-hero {
-  min-height: 330px;
-  padding: 58px 0 42px;
-  border-bottom: 1px solid var(--line-dark);
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(380px, 0.75fr);
-  align-items: end;
-  gap: 72px;
-  animation: referral-enter 420ms ease-out both;
-}
-
-.referral-eyebrow,
-.directory-kicker,
-.source-audit__heading span {
+.directory-kicker {
   font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
   font-size: 10px;
   font-weight: 700;
   color: var(--green);
 }
 
-.referral-eyebrow {
+.rebate-motion {
+  position: relative;
+  height: clamp(150px, 20svh, 210px);
+  min-height: 150px;
+  overflow: hidden;
+  padding: 22px 30px;
+  border-bottom: 1px solid #353b32;
+  color: #f4f6f1;
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(430px, 1.22fr);
+  align-items: center;
+  gap: 58px;
+  animation: referral-enter 420ms ease-out both;
+}
+
+.rebate-motion::before,
+.rebate-motion::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 3px;
+}
+
+.rebate-motion::before {
+  left: 0;
+  width: 68%;
+  background: var(--green-bright);
+}
+
+.rebate-motion::after {
+  right: 0;
+  width: 32%;
+  background: #f3bd54;
+}
+
+.rebate-motion__intro {
+  min-width: 0;
+}
+
+.rebate-motion__kicker {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 0 4px var(--green-soft);
-}
-
-.referral-hero h1 {
-  margin: 19px 0 16px;
-  max-width: 700px;
-  font-family: "DIN Alternate", "Bahnschrift", "Noto Sans SC", sans-serif;
-  font-size: 48px;
-  line-height: 1.04;
-  font-weight: 750;
-}
-
-.referral-hero__copy > p {
-  max-width: 680px;
-  margin: 0;
-  color: #4e5a52;
-  font-size: 16px;
-  line-height: 1.85;
-}
-
-.referral-summary {
-  margin: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 2px solid var(--ink);
-  border-bottom: 1px solid var(--line-dark);
-}
-
-.referral-summary div {
-  min-height: 90px;
-  padding: 16px 18px;
-  border-right: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.referral-summary div:nth-child(2) {
-  border-right: 0;
-}
-
-.referral-summary__wide {
-  grid-column: 1 / -1;
-  border-top: 1px solid var(--line);
-  border-right: 0 !important;
-}
-
-.referral-summary dt {
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 650;
-}
-
-.referral-summary dd {
-  margin: 0;
-  color: var(--ink);
+  gap: 7px;
+  color: var(--green-bright);
   font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
-  font-size: 28px;
-  line-height: 1;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.rebate-motion__intro h1 {
+  margin: 10px 0 7px;
+  color: #fff;
+  font-size: 23px;
+  line-height: 1.16;
+  font-weight: 680;
+}
+
+.rebate-motion__intro p {
+  margin: 0;
+  color: #929c8f;
+  font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
+  font-size: 10px;
+}
+
+.rebate-motion__metrics {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 23px;
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 34px minmax(150px, 1fr);
+  align-items: center;
+  gap: 13px;
+}
+
+.rebate-motion__metric {
+  min-width: 0;
+}
+
+.rebate-motion__metric span {
+  display: block;
+  margin-bottom: 8px;
+  color: #899385;
+  font-size: 10px;
   font-weight: 650;
 }
 
-.referral-summary__wide dd {
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.security-notice {
-  margin: 26px 0 0;
-  padding: 18px 20px;
-  border: 1px solid #d0ded5;
-  border-left: 4px solid var(--green);
-  border-radius: 4px;
-  background: #f9fcfa;
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  color: var(--green);
-}
-
-.security-notice svg {
-  flex: 0 0 auto;
-  margin-top: 1px;
-}
-
-.security-notice strong {
+.rebate-motion__metric strong {
   display: block;
-  margin-bottom: 4px;
-  font-size: 13px;
+  color: #fff;
+  font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  animation: rebate-number 280ms ease-out both;
 }
 
-.security-notice p {
-  margin: 0;
-  color: #46544b;
-  font-size: 13px;
-  line-height: 1.65;
+.rebate-motion__metric--result strong {
+  color: var(--green-bright);
+}
+
+.rebate-motion__arrow {
+  color: #657064;
+}
+
+.rebate-motion__bars {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.rebate-motion__bars span {
+  height: 3px;
+  align-self: end;
+  background: #343a32;
+  transition: height 260ms ease, background-color 260ms ease;
+}
+
+.rebate-motion__bars span.is-active {
+  height: 6px;
+  background: var(--green-bright);
 }
 
 .referral-directory {
-  padding: 68px 0 30px;
+  padding: 24px 0 44px;
 }
 
 .directory-toolbar {
-  margin-bottom: 24px;
+  margin-bottom: 15px;
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
 }
 
-.directory-toolbar h2,
-.source-audit h2 {
-  margin: 6px 0 0;
-  font-size: 25px;
+.directory-toolbar h2 {
+  margin: 4px 0 0;
+  font-size: 22px;
   line-height: 1.2;
 }
 
@@ -336,7 +342,7 @@ a:focus-visible {
 .directory-columns,
 .referral-entry {
   display: grid;
-  grid-template-columns: minmax(260px, 1.28fr) minmax(220px, 1fr) minmax(210px, 0.92fr) 86px;
+  grid-template-columns: minmax(260px, 1.28fr) minmax(220px, 1fr) minmax(210px, 0.92fr) 104px;
   gap: 22px;
 }
 
@@ -356,8 +362,8 @@ a:focus-visible {
 }
 
 .referral-entry {
-  min-height: 148px;
-  padding: 22px 18px;
+  min-height: 132px;
+  padding: 19px 18px;
   align-items: center;
   border-bottom: 1px solid var(--line);
   transition: background-color 160ms ease;
@@ -431,15 +437,6 @@ a:focus-visible {
   font-size: 12px;
   line-height: 1.5;
   font-weight: 550;
-}
-
-.source-record {
-  margin: 0;
-  overflow-wrap: anywhere;
-  color: #8a948d;
-  font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
-  font-size: 8px;
-  line-height: 1.55;
 }
 
 .entry-reward {
@@ -549,7 +546,7 @@ a:focus-visible {
 }
 
 .entry-action a {
-  width: 76px;
+  width: 100px;
   height: 38px;
   border: 1px solid var(--ink);
   border-radius: 4px;
@@ -577,69 +574,6 @@ a:focus-visible {
   color: var(--muted);
   font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
   font-size: 9px;
-}
-
-.source-audit {
-  margin: 56px 0 74px;
-  padding-top: 24px;
-  border-top: 2px solid var(--ink);
-}
-
-.source-audit__heading {
-  margin-bottom: 25px;
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-}
-
-.source-audit__heading svg {
-  margin-top: 3px;
-  color: var(--green);
-}
-
-.source-audit__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.source-audit__grid > div {
-  min-height: 152px;
-  padding: 22px;
-  border-right: 1px solid var(--line);
-}
-
-.source-audit__grid > div:last-child {
-  border-right: 0;
-}
-
-.source-audit__grid h3 {
-  margin: 0 0 12px;
-  font-size: 12px;
-}
-
-.source-audit__grid p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-.source-audit__grid a {
-  margin-bottom: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--green);
-  font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
-  font-size: 10px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.source-audit__grid a:hover {
-  text-decoration: underline;
 }
 
 .referral-footer {
@@ -723,15 +657,26 @@ a:focus-visible {
   }
 }
 
+@keyframes rebate-number {
+  from {
+    opacity: 0.25;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 960px) {
-  .referral-hero {
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 36px;
+  .rebate-motion {
+    grid-template-columns: minmax(220px, 0.7fr) minmax(390px, 1.3fr);
+    gap: 32px;
   }
 
   .directory-columns,
   .referral-entry {
-    grid-template-columns: minmax(220px, 1.2fr) minmax(190px, 1fr) minmax(165px, 0.8fr) 76px;
+    grid-template-columns: minmax(220px, 1.2fr) minmax(190px, 1fr) minmax(165px, 0.8fr) 100px;
     gap: 14px;
   }
 
@@ -762,30 +707,34 @@ a:focus-visible {
     width: min(100% - 32px, 620px);
   }
 
-  .referral-hero {
-    min-height: auto;
-    padding: 44px 0 32px;
+  .rebate-motion {
+    height: clamp(160px, 20svh, 190px);
+    min-height: 160px;
+    padding: 15px 18px;
     grid-template-columns: 1fr;
-    gap: 34px;
+    align-content: center;
+    gap: 12px;
   }
 
-  .referral-hero h1 {
-    font-size: 36px;
+  .rebate-motion__intro h1 {
+    margin: 5px 0 0;
+    font-size: 18px;
   }
 
-  .referral-hero__copy > p {
-    font-size: 14px;
+  .rebate-motion__intro p {
+    display: none;
   }
 
-  .security-notice {
-    padding: 15px;
+  .rebate-motion__metrics {
+    padding-bottom: 16px;
   }
 
   .referral-directory {
-    padding-top: 52px;
+    padding-top: 20px;
   }
 
   .directory-toolbar {
+    gap: 13px;
     align-items: stretch;
     flex-direction: column;
   }
@@ -854,25 +803,6 @@ a:focus-visible {
     text-align: left;
   }
 
-  .source-audit {
-    margin-bottom: 52px;
-  }
-
-  .source-audit__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .source-audit__grid > div {
-    min-height: 0;
-    padding: 19px 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .source-audit__grid > div:last-child {
-    border-bottom: 0;
-  }
-
   .referral-footer {
     min-height: 82px;
     padding: 18px 16px;
@@ -904,16 +834,22 @@ a:focus-visible {
     padding: 0 8px;
   }
 
-  .referral-hero h1 {
-    font-size: 32px;
+  .rebate-motion {
+    padding-right: 14px;
+    padding-left: 14px;
   }
 
-  .referral-summary dd {
-    font-size: 24px;
+  .rebate-motion__metrics {
+    grid-template-columns: minmax(92px, 1fr) 20px minmax(112px, 1fr);
+    gap: 8px;
   }
 
-  .referral-summary__wide dd {
-    font-size: 12px;
+  .rebate-motion__metric strong {
+    font-size: 25px;
+  }
+
+  .rebate-motion__arrow {
+    width: 18px;
   }
 
   .entry-logo {

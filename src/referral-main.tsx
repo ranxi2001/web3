@@ -4,7 +4,6 @@ import '@fontsource-variable/ibm-plex-sans'
 import '@fontsource/ibm-plex-mono/400.css'
 import { ReferralPage } from './referral/ReferralPage'
 import './referral.css'
-import './showcase.css'
 
 const root = document.getElementById('root')
 
