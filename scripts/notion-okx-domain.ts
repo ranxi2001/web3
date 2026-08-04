@@ -5,6 +5,7 @@ export const OKX_MATERIAL_PAGE_ID = 'df0b826a-a4b8-40fe-a1aa-4f351529afd1'
 const NOTION_PAGE_ENDPOINT = new URL('/api/v3/loadPageChunk', OKX_MATERIAL_PAGE_URL).toString()
 const TITLE_PREFIX = /^最新官方域名&APK域名[：:]/
 const REFERRAL_CODE_PATTERN = /^[A-Za-z0-9_-]{3,64}$/
+const RETRY_DELAYS_MS = [1_000, 3_000]
 
 type JsonRecord = Record<string, unknown>
 
@@ -118,25 +119,39 @@ export function buildOkxGreenChannelUrl(templateUrl: string, referralCode: strin
 }
 
 export async function fetchOkxJoinTemplate(): Promise<OkxJoinTemplate> {
-  const response = await fetch(NOTION_PAGE_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      'user-agent': 'tosky-referral-directory-sync/1.0',
-    },
-    body: JSON.stringify({
-      pageId: OKX_MATERIAL_PAGE_ID,
-      limit: 100,
-      cursor: { stack: [] },
-      chunkNumber: 0,
-      verticalColumns: false,
-    }),
-  })
+  let lastError: unknown
 
-  if (!response.ok) {
-    throw new Error(`Notion OKX material page request failed: HTTP ${response.status}`)
+  for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt += 1) {
+    try {
+      const response = await fetch(NOTION_PAGE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'user-agent': 'tosky-referral-directory-sync/1.0',
+        },
+        body: JSON.stringify({
+          pageId: OKX_MATERIAL_PAGE_ID,
+          limit: 100,
+          cursor: { stack: [] },
+          chunkNumber: 0,
+          verticalColumns: false,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error(`Notion OKX material page request failed: HTTP ${response.status}`)
+      }
+
+      return extractOkxJoinTemplate(await response.json())
+    } catch (error) {
+      lastError = error
+      const delay = RETRY_DELAYS_MS[attempt]
+      if (delay === undefined) break
+      await new Promise((resolve) => setTimeout(resolve, delay))
+    }
   }
 
-  return extractOkxJoinTemplate(await response.json())
+  const message = lastError instanceof Error ? lastError.message : String(lastError)
+  throw new Error(`Unable to read the Notion OKX material page after 3 attempts: ${message}`)
 }

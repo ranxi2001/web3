@@ -10,6 +10,11 @@ import {
 const SOURCE_URL = 'https://vlink.cc/tosky'
 const OUTPUT_PATH = resolve(process.cwd(), 'public/data/referrals.json')
 const OKX_CODE_ITEM_ID = 'pvoiWtAlph'
+const CHANGE_SCOPE = process.env.REFERRAL_SYNC_CHANGE_SCOPE ?? 'all'
+
+if (!['all', 'okx-url'].includes(CHANGE_SCOPE)) {
+  throw new Error(`Unsupported referral sync change scope: ${CHANGE_SCOPE}`)
+}
 
 type Category = 'exchange' | 'web3' | 'card'
 type DomainKind = 'official' | 'partner'
@@ -250,6 +255,20 @@ async function main() {
 
   try {
     const previous = JSON.parse(await readFile(OUTPUT_PATH, 'utf8')) as typeof snapshot
+    if (CHANGE_SCOPE === 'okx-url') {
+      const previousUrl = previous.entries.find(
+        (entry) => entry.id === 'okx-green-channel',
+      )?.url
+      const nextUrl = snapshot.entries.find(
+        (entry) => entry.id === 'okx-green-channel',
+      )?.url
+      if (!nextUrl) throw new Error('Generated snapshot is missing the OKX green channel URL')
+      if (previousUrl === nextUrl) {
+        console.log(`OKX green channel URL is unchanged: ${nextUrl}`)
+        return
+      }
+    }
+
     const previousComparable = {
       ...previous,
       source: { ...previous.source, checkedAt: snapshot.source.checkedAt },
