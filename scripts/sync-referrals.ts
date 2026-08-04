@@ -1,5 +1,11 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
+import {
+  buildOkxGreenChannelUrl,
+  fetchOkxJoinTemplate,
+  OKX_MATERIAL_PAGE_ID,
+  OKX_MATERIAL_PAGE_URL,
+} from './notion-okx-domain'
 
 const SOURCE_URL = 'https://vlink.cc/tosky'
 const OUTPUT_PATH = resolve(process.cwd(), 'public/data/referrals.json')
@@ -35,7 +41,8 @@ interface Selection {
   platform: string
   title: string
   category: Category
-  expectedDomain: string
+  expectedDomain?: string
+  targetSource?: 'okx-notion'
   domainKind: DomainKind
 }
 
@@ -47,8 +54,8 @@ const SELECTIONS: Selection[] = [
     platform: 'OKX',
     title: 'OKX 注册绿色通道',
     category: 'exchange',
-    expectedDomain: 'onefly.top/posts/8888.html',
-    domainKind: 'partner',
+    targetSource: 'okx-notion',
+    domainKind: 'official',
   },
   {
     id: 'okx-official',
@@ -166,6 +173,11 @@ async function main() {
   const nextData = parseNextData(await response.text())
   const sourceItems = nextData.props.pageProps.userBaseInfo.linkList
   const byId = new Map(sourceItems.map((item) => [item.id, item]))
+  const okxCode = byId.get(OKX_CODE_ITEM_ID)?.link.trim()
+  if (!okxCode) throw new Error(`Required OKX invite code is missing: ${OKX_CODE_ITEM_ID}`)
+
+  const okxTemplate = await fetchOkxJoinTemplate()
+  const okxGreenChannelUrl = buildOkxGreenChannelUrl(okxTemplate.templateUrl, okxCode)
 
   const entries = SELECTIONS.map((selection) => {
     const item = byId.get(selection.sourceLinkId)
@@ -173,11 +185,14 @@ async function main() {
       throw new Error(`Required VLink item is missing or inactive: ${selection.sourceLinkId}`)
     }
 
-    const target = new URL(item.link)
-    if (target.hostname !== selection.expectedDomain) {
+    const sourceTarget = new URL(item.link)
+    if (selection.expectedDomain && sourceTarget.hostname !== selection.expectedDomain) {
       throw new Error(
-        `Domain changed for ${selection.id}: expected ${selection.expectedDomain}, received ${target.hostname}`,
+        `Domain changed for ${selection.id}: expected ${selection.expectedDomain}, received ${sourceTarget.hostname}`,
       )
+    }
+    if (!selection.expectedDomain && selection.targetSource !== 'okx-notion') {
+      throw new Error(`Selection does not define a target rule: ${selection.id}`)
     }
 
     const relatedIds = [selection.sourceLinkId, ...(selection.extraSourceItemIds ?? [])]
@@ -187,13 +202,20 @@ async function main() {
       return { id: related.id, title: related.title }
     })
 
-    const referralCode = deriveReferralCode(target)
+    if (selection.targetSource === 'okx-notion') {
+      relatedItems.push({ id: OKX_MATERIAL_PAGE_ID, title: okxTemplate.pageTitle })
+    }
+
+    const referralCode = deriveReferralCode(sourceTarget)
     if (selection.extraSourceItemIds?.includes(OKX_CODE_ITEM_ID)) {
-      const sourceCode = byId.get(OKX_CODE_ITEM_ID)?.link
-      if (sourceCode !== referralCode) {
-        throw new Error(`OKX invite code mismatch: link=${referralCode}, copy item=${sourceCode}`)
+      if (okxCode !== referralCode) {
+        throw new Error(`OKX invite code mismatch: link=${referralCode}, copy item=${okxCode}`)
       }
     }
+
+    const target = new URL(
+      selection.targetSource === 'okx-notion' ? okxGreenChannelUrl : item.link,
+    )
 
     return {
       id: selection.id,
@@ -203,7 +225,7 @@ async function main() {
       benefit: `来源页原文：${relatedItems
         .map((related) => related.title.replace(/\s+/g, ' ').trim())
         .join(' / ')}`,
-      url: item.link,
+      url: target.toString(),
       targetDomain: target.hostname,
       domainKind: selection.domainKind,
       referralCode,
@@ -215,8 +237,9 @@ async function main() {
   const snapshot = {
     version: 1,
     source: {
-      provider: 'VLink / tosky',
+      provider: 'VLink / tosky + OKX official Notion material library',
       page: SOURCE_URL,
+      okxMaterialPage: OKX_MATERIAL_PAGE_URL,
       checkedAt: new Date().toISOString(),
       pageBuildId: nextData.buildId,
     },
@@ -224,6 +247,22 @@ async function main() {
   }
 
   await mkdir(dirname(OUTPUT_PATH), { recursive: true })
+
+  try {
+    const previous = JSON.parse(await readFile(OUTPUT_PATH, 'utf8')) as typeof snapshot
+    const previousComparable = {
+      ...previous,
+      source: { ...previous.source, checkedAt: snapshot.source.checkedAt },
+    }
+    if (JSON.stringify(previousComparable) === JSON.stringify(snapshot)) {
+      console.log('Referral links are already current')
+      return
+    }
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code
+    if (code !== 'ENOENT') throw error
+  }
+
   await writeFile(OUTPUT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`, 'utf8')
   console.log(`Synced ${entries.length} referral links to ${OUTPUT_PATH}`)
 }

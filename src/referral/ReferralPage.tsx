@@ -43,6 +43,7 @@ interface ReferralDirectory {
   source: {
     provider: string
     page: string
+    okxMaterialPage: string
     checkedAt: string
     pageBuildId: string
   }
@@ -69,6 +70,7 @@ function isReferralDirectory(value: unknown): value is ReferralDirectory {
   return Boolean(
     candidate.source &&
       typeof candidate.source.page === 'string' &&
+      typeof candidate.source.okxMaterialPage === 'string' &&
       typeof candidate.source.checkedAt === 'string' &&
       Array.isArray(candidate.entries) &&
       candidate.entries.every(
@@ -404,7 +406,16 @@ export function ReferralPage() {
                 vlink.cc/tosky
                 <ExternalLink aria-hidden="true" size={14} />
               </a>
-              <p>页面记录保留 VLink 原始条目 ID，便于逐项复核。</p>
+              <a
+                href={directory.source.okxMaterialPage}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Link2 aria-hidden="true" size={15} />
+                OKX 官方素材库
+                <ExternalLink aria-hidden="true" size={14} />
+              </a>
+              <p>页面记录保留 VLink 与 Notion 原始条目 ID，便于逐项复核。</p>
             </div>
             <div>
               <h3>静态快照</h3>

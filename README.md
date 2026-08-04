@@ -99,6 +99,8 @@ npm run build
 同步脚本会校验每个目标域名；若 VLink 条目的域名发生变化，脚本会失败，要求人工复核后再发布。推荐页会显示最终目标域名，并为外链添加 `noopener noreferrer sponsored`。
 当前目录只收录来源页中的注册、返佣、钱包和支付卡入口；社群、教程及普通文章链接不会发布到推荐页。
 
+OKX 绿色通道是例外：邀请码仍从 VLink 的复制条目读取，免 VPN 域名从 OKX 官方 Notion 素材页的页面标题读取。标题必须包含唯一的 `/join/渠道号` 模板；正文 APK 地址与页面历史旧域名不会参与生成。`Refresh referral directory` 工作流每 4 小时核对一次，仅在公开快照发生变化时提交并触发 Pages 部署。
+
 ## GitHub Pages
 
 1. 推送到 GitHub 的 `main` 分支。

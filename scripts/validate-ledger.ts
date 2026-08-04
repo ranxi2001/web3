@@ -19,6 +19,7 @@ const referralDirectorySchema = z.object({
   source: z.object({
     provider: z.string().min(1),
     page: z.string().url(),
+    okxMaterialPage: z.string().url(),
     checkedAt: z.string().min(1),
     pageBuildId: z.string().min(1),
   }),

@@ -1,10 +1,11 @@
 {
   "version": 1,
   "source": {
-    "provider": "VLink / tosky",
+    "provider": "VLink / tosky + OKX official Notion material library",
     "page": "https://vlink.cc/tosky",
-    "checkedAt": "2026-08-03T16:26:26.206Z",
-    "pageBuildId": "H-XB945kf2hLwDTUQ6nOU"
+    "okxMaterialPage": "https://conscious-meerkat-b7e.notion.site/APK-http-www-topzhjdgxcb-com-join-df0b826aa4b840fea1aa4f351529afd1",
+    "checkedAt": "2026-08-04T06:48:25.819Z",
+    "pageBuildId": "ygUD_Q49pYUuEQApTegVl"
   },
   "entries": [
     {
@@ -12,10 +13,10 @@
       "platform": "OKX",
       "title": "OKX 注册绿色通道",
       "category": "exchange",
-      "benefit": "来源页原文：OKX注册绿色通道 🎁 注册即领50元红包 🧧 / 手动输入20%返佣邀请码？点击复制",
-      "url": "https://onefly.top/posts/8888.html/join/88596413",
-      "targetDomain": "onefly.top/posts/8888.html",
-      "domainKind": "partner",
+      "benefit": "来源页原文：OKX注册绿色通道 🎁 注册即领50元红包 🧧 / 手动输入20%返佣邀请码？点击复制 / 最新官方域名&APK域名：http://www.topzhjdgxcb.com/join/渠道号",
+      "url": "https://www.topzhjdgxcb.com/join/88596413",
+      "targetDomain": "www.topzhjdgxcb.com",
+      "domainKind": "official",
       "referralCode": "88596413",
       "iconUrl": "https://vss10.vlinkx.cn/icon/tosky_7D3od2GktB.png",
       "sourceItems": [
@@ -26,6 +27,10 @@
         {
           "id": "pvoiWtAlph",
           "title": "手动输入20%返佣邀请码？点击复制"
+        },
+        {
+          "id": "df0b826a-a4b8-40fe-a1aa-4f351529afd1",
+          "title": "最新官方域名&APK域名：http://www.topzhjdgxcb.com/join/渠道号"
         }
       ]
     },
