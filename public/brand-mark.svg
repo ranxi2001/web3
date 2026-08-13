@@ -1,6 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
-  <g transform="rotate(-4 18 18)">
-    <path fill="#54d6a1" d="M3 2h14v32H3zM20 2h14v14H20z" />
-    <path fill="#f3bd54" d="M20 20h14v14H20z" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">GMGN.BEST 像素鳄鱼</title>
+  <desc id="desc">一只向右前进的荧光绿色像素鳄鱼</desc>
+  <path fill="#8affb6" d="M2 28h7v-6h7v-6h8v-5h8v6h8v-5h8v6h6v5h6v5h4v19h-7v6H43v5h-9V48H22v10h-9V48H7v-6H2z"/>
+  <path fill="#0b3b27" d="M4 29h7v-6h7v-5h7v-5h6v6h10v-5h6v6h6v5h6v5h3v15h-7v6H41v5h-5V46H20v10h-5V46H8v-6H4z"/>
+  <path fill="#16c96f" d="M7 29h8v-6h8v-5h7v6h11v-5h6v6h7v5h6v12H46v5H18v-5H8z"/>
+  <path fill="#2cf18d" d="M14 29h10v-5h8v5h19v5h9v6H34v5H18v-5H14z"/>
+  <path fill="#93ffc0" d="M24 29h25v5H24zM39 35h21v4H39z"/>
+  <path fill="#0b3b27" d="M42 25h6v6h-6zM49 39h11v5H49zM14 42h7v11h-7zM34 43h8v10h-8z"/>
+  <path fill="#ffd85c" d="M43 26h4v4h-4z"/>
+  <path fill="#ffffff" d="M55 40h4v2h-4z"/>
 </svg>
