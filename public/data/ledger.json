@@ -5,14 +5,14 @@
   "timezone": "Asia/Shanghai",
   "isDemo": true,
   "title": "返佣公开账本",
-  "disclosure": "本页为只读对账工具。返佣由运营人员线下复核并人工转账，网站不会连接钱包或发起链上交易。",
+  "disclosure": "系统自动同步 GMGN 全链返佣数据。用户绑定白名单收款地址后可自助领取，网站不会索要钱包私钥或助记词。",
   "methodology": {
     "platformFeeRate": 0.01,
     "defaultCustomerShareRate": 0.3,
     "formula": "确认交易量 × GMGN 手续费率 1% × 客户分成比例 30% = 预估返佣",
     "rounding": "链上数量保留 4 至 8 位；USDT 展示保留 2 位，台账计算保留原始精度。",
-    "priceRule": "待结算金额按快照时点价格预估；人工付款时按批次锁价记录实际支付数量。",
-    "revisionRule": "历史记录不覆盖。修订以新批次追加，并写明调整原因。"
+    "priceRule": "可领取金额按数据快照预估；用户确认领取时按最新汇率折算，并记录实际支付数量。",
+    "revisionRule": "历史领取记录不覆盖。异常调整以新记录追加，并写明调整原因。"
   },
   "showcase": {
     "id": "gmgn-solana-600k-2026-08",
@@ -24,7 +24,7 @@
     "effectiveRebateRate": 0.003,
     "estimatedRebateUsd": 1802.70,
     "snapshotAt": "2026-08-04T10:00:00+08:00",
-    "sourceLabel": "GMGN 钱包页人工快照",
+    "sourceLabel": "GMGN 全链数据同步快照",
     "lastMonth": {
       "label": "2026年7月",
       "settledUsd": 300,
@@ -43,7 +43,7 @@
     {
       "id": "gmgn-referral",
       "label": "GMGN Referral Report",
-      "role": "由运营人员登录 GMGN 推荐报告后人工确认推荐交易量与佣金。",
+      "role": "系统定时同步 GMGN 推荐数据，用于确认推荐归因、交易量与可领取返佣。",
       "url": "https://docs.gmgn.ai/index/referral-link"
     },
     {

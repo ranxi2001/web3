@@ -44,19 +44,19 @@ export function PublicOverview({ ledger }: PublicOverviewProps) {
           </article>
           <article className="metric">
             <span className="metric__icon metric__icon--amber"><ReceiptText size={19} /></span>
-            <p>待人工结算</p>
+            <p>当前可领取返佣</p>
             <strong>{formatUsd(totals.pending)}</strong>
-            <small>快照价格预估</small>
+            <small>数据自动同步，领取时按最新汇率折算</small>
           </article>
           <article className="metric">
             <span className="metric__icon metric__icon--blue"><FileCheck2 size={19} /></span>
-            <p>累计已结算</p>
+            <p>累计已领取</p>
             <strong>{formatUsd(settled)}</strong>
-            <small>{finalizedSettlements.length} 个已完成批次</small>
+            <small>{finalizedSettlements.length} 条领取记录</small>
           </article>
           <article className="metric">
             <span className="metric__icon metric__icon--violet"><UsersRound size={19} /></span>
-            <p>API 观察交易</p>
+            <p>自动同步交易</p>
             <strong>{formatNumber(totals.trades, 0)} 笔</strong>
             <small>{ledger.customers.length} 个匿名账户</small>
           </article>

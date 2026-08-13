@@ -35,7 +35,7 @@ export function SearchPanel({
         </div>
         <h1 id="lookup-title">交易照常，手续费返你 30%。</h1>
         <p>
-          通过专属入口使用 GMGN，平台手续费的 30% 返还给你。公开账本可查询交易量、返佣计算与结算记录。
+          通过专属入口使用 GMGN，平台手续费的 30% 返还给你。系统自动同步全链数据，核对后即可自助领取。
         </p>
         <div className="hero-actions">
           <a className="hero-cta" href="https://gmgn.ai/r/cLf0ZwzZ" target="_blank" rel="noopener noreferrer sponsored">

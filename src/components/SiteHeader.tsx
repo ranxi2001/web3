@@ -10,15 +10,15 @@ export function SiteHeader({ generatedAt, onMethodology }: SiteHeaderProps) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <a className="brand" href="./index.html" aria-label="返佣公开账本首页">
+        <a className="brand" href="./index.html" aria-label="GMGN.BEST 首页">
           <img
             className="brand__mark"
             src={`${import.meta.env.BASE_URL}brand-mark.svg`}
             alt=""
           />
           <span className="brand__name">
-            返佣公开账本
-            <small>REBATE LEDGER</small>
+            GMGN.BEST
+            <small>REBATE 30%</small>
           </span>
         </a>
 
@@ -41,7 +41,7 @@ export function SiteHeader({ generatedAt, onMethodology }: SiteHeaderProps) {
         <div className="header-status" aria-label="账本状态">
           <span className="header-status__dot" />
           <span>
-            公开只读
+            自动同步
             <small>{generatedAt ? `更新于 ${formatDateTime(generatedAt)}` : '正在读取快照'}</small>
           </span>
         </div>

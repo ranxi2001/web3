@@ -32,16 +32,16 @@ export const Methodology = forwardRef<HTMLElement, MethodologyProps>(
           <article>
             <span className="evidence-flow__index">02</span>
             <FileCheck2 size={20} />
-            <h3>推荐报告确认</h3>
-            <p>运营登录 GMGN Referral Report，确认客户归因、交易量与本期可结算口径。</p>
-            <small>当前返佣计算的确认来源</small>
+            <h3>GMGN 数据同步</h3>
+            <p>系统定时拉取 GMGN 推荐数据，更新客户归因、分链交易量与当前可领取金额。</p>
+            <small>当前返佣计算的数据来源</small>
           </article>
           <article>
             <span className="evidence-flow__index">03</span>
             <ShieldCheck size={20} />
-            <h3>人工付款凭证</h3>
-            <p>转账后记录批次、锁价、实付币种数量、时间与可验证的链上交易哈希。</p>
-            <small>用于证明实际完成结算</small>
+            <h3>自助领取凭证</h3>
+            <p>用户确认领取后，系统向白名单地址支付，并记录汇率、实付数量与链上交易哈希。</p>
+            <small>用于证明返佣已经到账</small>
           </article>
         </div>
 

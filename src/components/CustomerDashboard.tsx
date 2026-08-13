@@ -52,21 +52,21 @@ const chainShortName: Record<ChainLedger['chain'], string> = {
 }
 
 const settlementStatus = {
-  awaiting_confirmation: ['待确认', 'neutral'],
-  awaiting_manual_payment: ['待人工转账', 'pending'],
-  partially_paid: ['部分结算', 'warning'],
-  paid: ['已结算', 'success'],
+  awaiting_confirmation: ['同步确认中', 'neutral'],
+  awaiting_manual_payment: ['可领取', 'pending'],
+  partially_paid: ['部分领取', 'warning'],
+  paid: ['已领取', 'success'],
 } as const
 
 const chainStatus = {
   current: ['数据完整', 'success'],
   delayed: ['数据延迟', 'warning'],
-  manual_review: ['人工复核', 'pending'],
+  manual_review: ['异常核验中', 'pending'],
 } as const
 
 const recordStatus = {
   confirmed: ['已确认', 'neutral'],
-  awaiting_transfer: ['待人工转账', 'pending'],
+  awaiting_transfer: ['待领取', 'pending'],
   paid: ['已支付', 'success'],
   adjusted: ['已调整', 'warning'],
 } as const
@@ -83,8 +83,8 @@ function ChainRow({ chain }: { chain: ChainLedger }) {
       ? null
       : (chain.observedVolumeUsd - chain.confirmedVolumeUsd) / chain.confirmedVolumeUsd
   const confirmedSourceLabel =
-    chain.source.confirmed === 'gmgn_referral_report' ? '推荐报告确认' : '人工调整确认'
-  const observedSourceLabel = chain.source.observed ? 'API 观察' : '未接入 API'
+    chain.source.confirmed === 'gmgn_referral_report' ? 'GMGN 数据同步' : '异常调整记录'
+  const observedSourceLabel = chain.source.observed ? '钱包活动同步' : '等待数据同步'
 
   return (
     <article className={`chain-row chain-row--${chain.chain}`}>
@@ -181,9 +181,9 @@ export function CustomerDashboard({ ledger, customer }: CustomerDashboardProps) 
   )
   const confirmationSummary = confirmedSources.has('manual_adjustment')
     ? confirmedSources.has('gmgn_referral_report')
-      ? '本期各链数据完整；确认来源包含 GMGN 推荐报告与公开人工调整。'
-      : '本期各链数据完整；确认量来自公开人工调整。'
-    : '本期各链数据完整，已完成 GMGN 推荐报告复核。'
+      ? '本期各链数据已自动同步；其中包含公开异常调整记录。'
+      : '本期各链数据已自动同步；确认量包含公开异常调整记录。'
+    : '本期各链数据已从 GMGN 自动同步，可核对后自助领取。'
   const [settlementLabel, settlementTone] = settlementStatus[customer.settlementStatus]
 
   const visibleChains = useMemo(
@@ -271,12 +271,12 @@ export function CustomerDashboard({ ledger, customer }: CustomerDashboardProps) 
       <div className="metrics-band metrics-band--customer">
         <article className="metric metric--primary">
           <span className="metric__icon metric__icon--amber"><ReceiptText size={19} /></span>
-          <p>待结算返佣（预估）</p>
+          <p>当前可领取返佣</p>
           <strong>{formatUsd(pendingUsd)}</strong>
           <small>
             {currentPeriodPaidUsd > 0
               ? `本期已支付 ${formatUsd(currentPeriodPaidUsd)}`
-              : '实际支付按人工结算锁价'}
+              : '领取时按最新汇率折算并支付'}
           </small>
         </article>
         <article className="metric">
@@ -287,13 +287,13 @@ export function CustomerDashboard({ ledger, customer }: CustomerDashboardProps) 
         </article>
         <article className="metric">
           <span className="metric__icon metric__icon--blue"><History size={19} /></span>
-          <p>累计已结算</p>
+          <p>累计已领取</p>
           <strong>{formatUsd(settledUsd)}</strong>
           <small>{settlements.length} 个历史批次</small>
         </article>
         <article className="metric">
           <span className="metric__icon metric__icon--violet"><FileClock size={19} /></span>
-          <p>最近一次结算</p>
+          <p>最近一次领取</p>
           <strong>{lastSettlement?.paidAt ? formatDate(lastSettlement.paidAt) : '暂无'}</strong>
           <small>
             {lastSettlement?.paidAmount != null && lastSettlement.paidAsset
@@ -383,7 +383,7 @@ export function CustomerDashboard({ ledger, customer }: CustomerDashboardProps) 
                     )}
                   </td>
                   <td data-label="支付时间">
-                    {settlement.paidAt ? formatDateTime(settlement.paidAt) : '待人工转账'}
+                    {settlement.paidAt ? formatDateTime(settlement.paidAt) : '等待用户领取'}
                   </td>
                   <td data-label="状态"><StatusBadge label={recordLabel} tone={recordTone} /></td>
                   <td data-label="交易凭证">
@@ -435,13 +435,13 @@ export function CustomerDashboard({ ledger, customer }: CustomerDashboardProps) 
           </div>
           <div>
             <span>02</span>
-            <h3>人工转账不在网页执行</h3>
-            <p>运营复核后人工付款。完成后追加批次、锁价、实付数量与链上交易哈希。</p>
+            <h3>返佣支持自助领取</h3>
+            <p>绑定白名单收款地址后，可核对全链返佣并主动领取；到账结果以链上交易哈希为准。</p>
           </div>
           <div>
             <span>03</span>
             <h3>历史记录只追加</h3>
-            <p>若发生差异，以调整批次记录原因，不覆盖旧付款凭证，便于长期核对。</p>
+            <p>每次领取都会追加金额、汇率、实付数量与交易哈希；历史领取记录不会被覆盖。</p>
           </div>
           <a href="#methodology" onClick={() => setView('chains')}>
             查看完整数据口径 <ArrowUpRight size={16} />

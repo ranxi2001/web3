@@ -114,7 +114,7 @@ describe('earnings showcase', () => {
       customerShareRate: 0.3,
       effectiveRebateRate: 0.003,
       estimatedRebateUsd: 1802.7,
-      sourceLabel: 'GMGN 钱包页人工快照',
+      sourceLabel: 'GMGN 全链数据同步快照',
     })
     expect(Date.parse(showcase.snapshotAt)).not.toBeNaN()
     expect(showcase.effectiveRebateRate).toBeCloseTo(

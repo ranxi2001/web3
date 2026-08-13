@@ -135,7 +135,7 @@ export function EarningsShowcase({
         <div className="showcase-figure showcase-figure--result">
           <span>03 / 累计预计返佣</span>
           <strong>{formatAsset(showcase.estimatedRebateUsd, estimatedAsset, true)}</strong>
-          <small>ESTIMATE · 尚非付款凭证</small>
+          <small>ESTIMATE · 领取前实时核算</small>
         </div>
       </div>
 
@@ -184,7 +184,7 @@ export function EarningsShowcase({
           <div>
             <FileWarning aria-hidden="true" size={18} />
             <p>
-              累计金额为快照测算，上月占位记录不等于付款凭证；实际付款以结算批次与链上交易哈希为准。
+              累计金额为快照测算；自助领取时按最新汇率确认，实际到账以领取记录与链上交易哈希为准。
             </p>
           </div>
           <a className="showcase-cta" href={ctaHref}>

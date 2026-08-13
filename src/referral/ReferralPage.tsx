@@ -257,15 +257,15 @@ export function ReferralPage() {
   return (
     <div className="referral-shell">
       <header className="referral-topbar">
-        <a className="referral-brand" href="./" aria-label="返回返佣公开账本">
+        <a className="referral-brand" href="./" aria-label="返回 GMGN.BEST 首页">
           <img
             className="referral-brand__mark"
             src={`${import.meta.env.BASE_URL}brand-mark.svg`}
             alt=""
           />
           <span>
-            <strong>返佣公开账本</strong>
-            <small>REBATE LEDGER</small>
+            <strong>GMGN.BEST</strong>
+            <small>REBATE 30%</small>
           </span>
         </a>
 
@@ -279,6 +279,9 @@ export function ReferralPage() {
       </header>
 
       <main>
+        <section className="referral-process" aria-label="返佣流程">
+          <span>01 专属入口注册</span><b>→</b><span>02 全链数据自动同步</span><b>→</b><span>03 白名单地址自助领取</span>
+        </section>
         <RebateMotion effectiveRate={showcase?.effectiveRebateRate ?? 0.003} />
 
         <section className="referral-directory" aria-labelledby="directory-heading">
@@ -383,7 +386,7 @@ export function ReferralPage() {
       </main>
 
       <footer className="referral-footer">
-        <span>返佣公开账本 / REBATE LEDGER</span>
+        <span>GMGN.BEST · 自动同步 · 自助领取</span>
         <span>DATA VERSION {directory.version} · SOURCE BUILD {directory.source.pageBuildId}</span>
       </footer>
     </div>

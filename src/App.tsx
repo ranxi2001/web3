@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { AlertTriangle, RefreshCw } from 'lucide-react'
+import { AlertTriangle, ArrowRight, RefreshCw, ShieldCheck } from 'lucide-react'
 import { CustomerDashboard } from './components/CustomerDashboard'
 import { Methodology } from './components/Methodology'
 import { PublicOverview } from './components/PublicOverview'
@@ -139,7 +139,20 @@ function App() {
         {ledger && (
           <>
             {selectedCustomer ? (
-              <CustomerDashboard ledger={ledger} customer={selectedCustomer} />
+              <>
+                <CustomerDashboard ledger={ledger} customer={selectedCustomer} />
+                <section className="claim-entry" aria-labelledby="claim-entry-title">
+                  <div>
+                    <span><ShieldCheck size={16} aria-hidden="true" />白名单地址保护</span>
+                    <h2 id="claim-entry-title">核对完成后，前往返佣中心自助领取</h2>
+                    <p>系统自动同步全链数据。领取前会再次确认分链金额、最新汇率与白名单收款地址。</p>
+                  </div>
+                  <a href="./claim.html">
+                    领取全链返佣
+                    <ArrowRight size={18} aria-hidden="true" />
+                  </a>
+                </section>
+              </>
             ) : (
               <PublicOverview ledger={ledger} />
             )}
@@ -150,10 +163,10 @@ function App() {
 
       <footer className="site-footer">
         <div>
-          <strong>返佣公开账本</strong>
-          <span>只读查询 · 人工复核 · 链上凭证</span>
+          <strong>GMGN.BEST</strong>
+          <span>自动同步 · 自助领取 · 链上凭证</span>
         </div>
-        <p>本页不托管资产，不连接钱包，不发起任何交易。</p>
+        <p>仅向账户主动绑定的白名单地址支付；不会索要钱包私钥或助记词。</p>
       </footer>
     </div>
   )

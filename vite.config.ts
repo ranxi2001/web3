@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         dashboard: fileURLToPath(new URL('./index.html', import.meta.url)),
         referral: fileURLToPath(new URL('./referral.html', import.meta.url)),
+        claim: fileURLToPath(new URL('./claim.html', import.meta.url)),
       },
     },
   },

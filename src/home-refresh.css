@@ -72,9 +72,16 @@ main { padding-top: 16px; }
 .metric strong, .section-heading h2, .account-heading h2, .methodology h2 { color: #fff; }
 .metric p, .section-heading > p { color: var(--muted); }
 .site-footer { color: #939c95; background: #050605; border-top-color: #222723; }
+.claim-entry { margin-top: 28px; padding: 26px 30px; display: flex; align-items: center; justify-content: space-between; gap: 25px; border: 1px solid rgba(33,232,137,.24); border-radius: 12px; background: linear-gradient(100deg,rgba(33,232,137,.09),#101311 55%); }
+.claim-entry span { display: flex; align-items: center; gap: 7px; color: var(--green); font-size: 10px; font-weight: 700; }
+.claim-entry h2 { margin: 8px 0 5px; color: #fff; font-size: 22px; }
+.claim-entry p { margin: 0; color: #909a92; font-size: 12px; }
+.claim-entry > a { min-height: 48px; padding: 0 18px; display: flex; align-items: center; gap: 8px; color: #061109; background: var(--green); border-radius: 7px; font-weight: 750; text-decoration: none; white-space: nowrap; }
 
 @media (max-width: 900px) {
   .search-section { min-height: 0; grid-template-columns: 1fr; padding: 38px 24px; gap: 34px; }
+  .claim-entry { align-items: stretch; flex-direction: column; }
+  .claim-entry > a { justify-content: center; }
   .hero-rate strong { font-size: 82px; }
 }
 @media (max-width: 560px) {

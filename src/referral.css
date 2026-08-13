@@ -149,6 +149,21 @@ a:focus-visible {
   margin: 0 auto;
 }
 
+.referral-process {
+  min-height: 48px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: #a8b2aa;
+  background: #0d100e;
+  border-right: 1px solid #29302b;
+  border-left: 1px solid #29302b;
+  font: 650 10px "IBM Plex Mono", monospace;
+}
+.referral-process b { color: var(--green); }
+
 .directory-kicker {
   font-family: "IBM Plex Mono", "Cascadia Mono", monospace;
   font-size: 10px;
