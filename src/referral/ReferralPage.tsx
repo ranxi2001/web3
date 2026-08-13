@@ -265,7 +265,7 @@ export function ReferralPage() {
         <a className="referral-brand" href="./" aria-label="返回 GMGN.BEST 首页">
           <img
             className="referral-brand__mark"
-            src={`${import.meta.env.BASE_URL}brand-mark.svg`}
+            src={`${import.meta.env.BASE_URL}gmgn-frog-coin.webp`}
             alt=""
           />
           <span>

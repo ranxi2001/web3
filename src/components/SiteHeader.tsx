@@ -13,7 +13,7 @@ export function SiteHeader({ generatedAt, onMethodology }: SiteHeaderProps) {
         <a className="brand" href="./index.html" aria-label="GMGN.BEST 首页">
           <img
             className="brand__mark"
-            src={`${import.meta.env.BASE_URL}brand-mark.svg`}
+            src={`${import.meta.env.BASE_URL}gmgn-frog-coin.webp`}
             alt=""
           />
           <span className="brand__name">

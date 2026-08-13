@@ -12,7 +12,7 @@ export function ClaimPage() {
   return (
     <div className="claim-shell">
       <header className="claim-topbar">
-        <a href="./" className="claim-brand"><img src="./brand-mark.svg" alt="" />GMGN.BEST</a>
+        <a href="./" className="claim-brand"><img src="./gmgn-frog-coin.webp" alt="" />GMGN.BEST</a>
         <span><i />自动同步运行中</span>
       </header>
       <main className="claim-page">
