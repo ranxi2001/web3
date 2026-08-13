@@ -1,0 +1,50 @@
+/* Premium dark refresh */
+:root {
+  color: #f5f7f2; background: #070908;
+  --ink: #070908; --muted: #96a098; --line: #282e2a; --line-dark: #3a433d;
+  --paper: #101311; --canvas: #070908; --green: #21e889; --green-bright: #50f5a6;
+  --green-soft: rgba(33,232,137,.12); --amber: #ffbe45; --amber-soft: rgba(255,190,69,.12);
+}
+html, body { background: #070908; }
+body {
+  color: #f5f7f2;
+  background-image: radial-gradient(circle at 15% 5%, rgba(33,232,137,.10), transparent 30%), linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size: auto,48px 48px,48px 48px;
+}
+.referral-topbar { background: rgba(7,9,8,.88); border-bottom-color: #252a27; backdrop-filter: blur(18px); }
+.referral-nav a[aria-current="page"], .referral-nav a:hover { background: #171b18; }
+.rebate-motion { height: clamp(240px,31svh,330px); padding: 34px 46px; border: 1px solid #29302b; border-top: 0; border-radius: 0 0 20px 20px; background: linear-gradient(135deg,#0d110f,#080a09 64%,#101b15); }
+.rebate-motion::before { width: 100%; background: var(--green); }
+.rebate-motion::after { display: none; }
+.rebate-motion__rate { margin: 7px 0 -3px; color: var(--green); font: 780 clamp(64px,8vw,104px)/.9 "IBM Plex Sans Variable",sans-serif; letter-spacing: -.07em; }
+.rebate-motion__intro h1 { margin-top: 12px; font-size: clamp(25px,3vw,38px); letter-spacing: -.035em; }
+.rebate-motion__intro p { color: #a2aca4; font-size: 11px; }
+.rebate-motion__metric strong { font-size: clamp(32px,4vw,48px); }
+.referral-directory { padding-top: 38px; }
+.directory-kicker { color: var(--green); letter-spacing: .12em; }
+.directory-toolbar h2 { color: #fff; font-size: 28px; }
+.category-filter { border-color: #343b36; background: #111512; }
+.category-filter button { color: #939d95; }
+.category-filter button.is-active { color: #061109; background: var(--green); box-shadow: none; }
+.directory-table { border-top-color: var(--green); border-bottom-color: var(--line); }
+.directory-columns { border-color: var(--line); color: #7f8981; }
+.directory-rows { background: transparent; }
+.referral-entry { background: #101311; border-color: var(--line); }
+.referral-entry:first-child { position: relative; background: linear-gradient(90deg,rgba(33,232,137,.11),#101311 42%); box-shadow: inset 3px 0 var(--green); }
+.referral-entry:hover { background: #151a16; }
+.entry-logo { border-color: #343c36; color: var(--green); background: #171c18; }
+.entry-platform-line strong { color: #fff; }
+.entry-platform-line span { color: #9cadff; background: rgba(94,119,255,.12); }
+.entry-platform-line .entry-featured { color: #061109; background: var(--green); }
+.entry-brand h3, .entry-reward > p { color: #adb6af; }
+.referral-code { border-color: #343c36; background: #090b0a; }
+.referral-code code { color: #fff; }
+.copy-button { color: var(--green); background: #171b18; }
+.domain-line { color: #c0c9c2; }
+.entry-action a { color: #061109; background: var(--green); border-radius: 6px; }
+.entry-action a:hover { background: #65ffb2; }
+.referral-footer { color: #808a82; border-color: #232824; }
+.referral-state { color: #d8dfda; background: #070908; }
+@media (max-width: 800px) {
+  .rebate-motion { height: auto; grid-template-columns: 1fr; gap: 35px; padding: 32px 24px; }
+}

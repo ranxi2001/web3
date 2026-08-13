@@ -1,5 +1,5 @@
 import type { FormEvent } from 'react'
-import { ArrowRight, Hash, LoaderCircle, Search, ShieldCheck, Wallet } from 'lucide-react'
+import { ArrowRight, ExternalLink, Hash, LoaderCircle, Search, ShieldCheck, Wallet } from 'lucide-react'
 
 type SearchPanelProps = {
   query: string
@@ -28,11 +28,22 @@ export function SearchPanel({
   return (
     <section className="search-section" aria-labelledby="lookup-title">
       <div className="search-section__intro">
-        <p className="eyebrow">PUBLIC REBATE AUDIT</p>
-        <h1 id="lookup-title">查清每一笔交易，核对每一次结算。</h1>
+        <p className="eyebrow">GMGN REBATE · PUBLIC LEDGER</p>
+        <div className="hero-rate" aria-label="GMGN 手续费返佣比例 30%">
+          <span>GMGN 手续费返佣</span>
+          <strong>30%</strong>
+        </div>
+        <h1 id="lookup-title">交易照常，手续费返你 30%。</h1>
         <p>
-          输入客户公开编号或 GMGN 交易钱包，查看本期交易量、返佣计算与历史付款凭证。
+          通过专属入口使用 GMGN，平台手续费的 30% 返还给你。公开账本可查询交易量、返佣计算与结算记录。
         </p>
+        <div className="hero-actions">
+          <a className="hero-cta" href="https://gmgn.ai/r/cLf0ZwzZ" target="_blank" rel="noopener noreferrer sponsored">
+            立即使用 GMGN
+            <ExternalLink size={17} aria-hidden="true" />
+          </a>
+          <a className="hero-secondary" href="./referral.html">查看全部返佣入口</a>
+        </div>
       </div>
 
       <form className="lookup-form" onSubmit={submit} noValidate>

@@ -152,10 +152,11 @@ function RebateMotion({ effectiveRate }: { effectiveRate: number }) {
       <div className="rebate-motion__intro">
         <span className="rebate-motion__kicker">
           <TrendingUp aria-hidden="true" size={15} />
-          月度返佣测算
+          GMGN 专属返佣
         </span>
-        <h1 id="rebate-motion-title">交易量增长，返佣同步增长</h1>
-        <p>按 {(effectiveRate * 100).toFixed(2)}% 有效返佣率预计</p>
+        <div className="rebate-motion__rate">30%</div>
+        <h1 id="rebate-motion-title">GMGN 手续费，返你 30%</h1>
+        <p>GMGN 手续费率 1% × 返佣 30% = 交易量的 {(effectiveRate * 100).toFixed(2)}%</p>
       </div>
 
       <div className="rebate-motion__metrics">
@@ -233,8 +234,10 @@ export function ReferralPage() {
 
   const visibleEntries = useMemo(() => {
     if (!directory) return []
-    if (activeCategory === 'all') return directory.entries
-    return directory.entries.filter((entry) => entry.category === activeCategory)
+    const entries = activeCategory === 'all'
+      ? directory.entries
+      : directory.entries.filter((entry) => entry.category === activeCategory)
+    return [...entries].sort((a, b) => Number(b.id === 'gmgn-web3') - Number(a.id === 'gmgn-web3'))
   }, [activeCategory, directory])
 
   async function handleCopy(entry: ReferralEntry) {
@@ -321,6 +324,7 @@ export function ReferralPage() {
                       <div>
                         <div className="entry-platform-line">
                           <strong>{entry.platform}</strong>
+                          {entry.id === 'gmgn-web3' && <span className="entry-featured">首选 · 返佣 30%</span>}
                           <span>{CATEGORY_LABELS[entry.category]}</span>
                         </div>
                         <h3>{entry.title}</h3>

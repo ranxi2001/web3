@@ -30,7 +30,7 @@ describe('referral page conversion flow', () => {
     render(<ReferralPage />)
 
     const estimateHeading = await screen.findByRole('heading', {
-      name: '交易量增长，返佣同步增长',
+      name: 'GMGN 手续费，返你 30%',
     })
     const directoryHeading = screen.getByRole('heading', {
       name: '选择平台，立即注册',

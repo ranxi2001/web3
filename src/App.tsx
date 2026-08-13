@@ -100,8 +100,8 @@ function App() {
       <main>
         {ledger?.isDemo && (
           <div className="demo-notice" role="status">
-            <span>DEMO</span>
-            当前为演示数据。上线前请替换客户、推荐报告与真实付款凭证。
+            <span>数据状态</span>
+            账本查询当前展示脱敏样例；返佣比例与计算口径可正常查看。
           </div>
         )}
 
