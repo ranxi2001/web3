@@ -394,11 +394,24 @@ export function ReferralPage() {
           </p>
           <p className="sr-only" aria-live="polite">{copyMessage}</p>
         </section>
+
+        <section className="referral-seo-copy" aria-labelledby="referral-guide-title">
+          <span className="directory-kicker">GMGN REFERRAL GUIDE</span>
+          <h2 id="referral-guide-title">GMGN 邀请码、Referral Code 与 30% 手续费返佣</h2>
+          <p>GMGN.BEST 的专属注册链接用于记录符合条件的注册归因。完成注册后，系统自动同步全链交易数据、计算返佣；用户绑定白名单地址后可自助领取。</p>
+          <div>
+            <article><h3>返佣 30% 怎么算？</h3><p>返佣基于已确认的 GMGN 平台手续费计算。若手续费率为 1%，手续费返佣比例为 30%，对应交易量的有效返佣率示例为 0.30%。</p></article>
+            <article><h3>老用户一定能绑定吗？</h3><p>不一定。返佣资格取决于账号归因和当期活动规则，不能仅凭填写邀请码保证生效。</p></article>
+            <article><h3>领取需要私钥吗？</h3><p>不需要。GMGN.BEST 不会索要钱包私钥或助记词；收款只面向账户主动绑定的白名单地址。</p></article>
+          </div>
+          <p className="referral-disclosure">GMGN.BEST 是独立返佣服务，并非 GMGN 官方网站或官方合作声明。30% 是 GMGN.BEST 自身返佣规则，不构成收益、资格或到账时间保证。</p>
+          <a href="https://onefly.top/posts/gmgn-referral-code-fee-rebate-guide.html" target="_blank" rel="noopener noreferrer">查看完整 GMGN 返佣注册指南</a>
+        </section>
       </main>
 
       <footer className="referral-footer">
         <span>GMGN.BEST · 自动同步 · 自助领取</span>
-        <span>DATA VERSION {directory.version} · SOURCE BUILD {directory.source.pageBuildId}</span>
+        <span>独立返佣服务 · 非 GMGN 官方网站</span>
       </footer>
     </div>
   )

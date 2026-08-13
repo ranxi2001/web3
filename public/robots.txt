@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /claim.html
+
+Sitemap: https://gmgn.best/sitemap.xml

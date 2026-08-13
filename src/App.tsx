@@ -159,6 +159,19 @@ function App() {
             <Methodology ref={methodologyRef} ledger={ledger} />
           </>
         )}
+
+        <section className="seo-explainer" aria-labelledby="seo-explainer-title">
+          <p className="eyebrow">GMGN REBATE GUIDE</p>
+          <h2 id="seo-explainer-title">GMGN 30% 返佣如何运作？</h2>
+          <p>经 GMGN.BEST 专属入口注册并满足归因条件后，系统自动同步 GMGN 全链交易数据，按已确认的平台手续费计算 30% 返佣。用户绑定白名单收款地址后，可在返佣中心核对分链金额并自助领取。</p>
+          <ul>
+            <li><strong>返佣对象：</strong>GMGN.BEST 根据自身返佣规则向符合条件的用户返还部分手续费。</li>
+            <li><strong>计算口径：</strong>确认交易量 × GMGN 手续费率 × 30%，不是返还交易量的 30%。</li>
+            <li><strong>安全边界：</strong>查询和领取不需要提交私钥或助记词；Gas、交易手续费和返佣是不同概念。</li>
+          </ul>
+          <p>GMGN.BEST 是独立返佣服务，不是 GMGN 官方网站，也不代表 GMGN 官方作出 30% 返还承诺。资格与实际结果受账号归因、活动规则、数据同步和链上状态影响。</p>
+          <a href="https://onefly.top/posts/gmgn-referral-code-fee-rebate-guide.html" target="_blank" rel="noopener noreferrer">阅读 GMGN 邀请码、计算规则与领取指南</a>
+        </section>
       </main>
 
       <footer className="site-footer">

@@ -72,6 +72,12 @@ main { padding-top: 16px; }
 .metric strong, .section-heading h2, .account-heading h2, .methodology h2 { color: #fff; }
 .metric p, .section-heading > p { color: var(--muted); }
 .site-footer { color: #939c95; background: #050605; border-top-color: #222723; }
+.seo-explainer { margin-top: 32px; padding: 30px; border: 1px solid #252b26; border-radius: 14px; background: #0c0f0d; color: #aab4ac; }
+.seo-explainer h2 { margin: 7px 0 12px; color: #f3f7f4; font-size: clamp(1.45rem,3vw,2rem); }
+.seo-explainer p { max-width: 920px; line-height: 1.75; }
+.seo-explainer ul { display: grid; gap: 9px; padding-left: 20px; line-height: 1.65; }
+.seo-explainer strong { color: #dfe7e1; }
+.seo-explainer a { display: inline-flex; margin-top: 8px; color: #65ffb2; font-weight: 700; }
 .claim-entry { margin-top: 28px; padding: 26px 30px; display: flex; align-items: center; justify-content: space-between; gap: 25px; border: 1px solid rgba(33,232,137,.24); border-radius: 12px; background: linear-gradient(100deg,rgba(33,232,137,.09),#101311 55%); }
 .claim-entry span { display: flex; align-items: center; gap: 7px; color: var(--green); font-size: 10px; font-weight: 700; }
 .claim-entry h2 { margin: 8px 0 5px; color: #fff; font-size: 22px; }
