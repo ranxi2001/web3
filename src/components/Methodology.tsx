@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { ArrowUpRight, Database, Download, FileCheck2, ShieldCheck } from 'lucide-react'
-import { formatDateTime, formatPercent } from '../lib/ledger'
+import { formatPercent } from '../lib/ledger'
 import type { PublicLedger } from '../lib/schema'
 
 type MethodologyProps = {
@@ -68,14 +68,6 @@ export const Methodology = forwardRef<HTMLElement, MethodologyProps>(
               </a>
             ))}
           </div>
-        </div>
-
-        <div className="audit-meta">
-          <span>Schema v{ledger.schemaVersion}</span>
-          <span>修订 {ledger.ledgerRevision}</span>
-          <span>生成于 {formatDateTime(ledger.generatedAt)}</span>
-          <span>{ledger.methodology.revisionRule}</span>
-          <span>匿名编号与钱包哈希不等于身份鉴权</span>
         </div>
       </section>
     )
