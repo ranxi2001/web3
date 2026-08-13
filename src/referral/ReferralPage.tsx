@@ -150,6 +150,11 @@ function RebateMotion({ effectiveRate }: { effectiveRate: number }) {
   return (
     <section className="rebate-motion" aria-labelledby="rebate-motion-title">
       <div className="rebate-motion__intro">
+        <img
+          className="rebate-motion__mascot"
+          src={`${import.meta.env.BASE_URL}gmgn-frog-coin.webp`}
+          alt="像素青蛙递出返佣金币"
+        />
         <span className="rebate-motion__kicker">
           <TrendingUp aria-hidden="true" size={15} />
           GMGN 专属返佣
@@ -322,7 +327,13 @@ export function ReferralPage() {
                     <div className="entry-brand">
                       <span className="entry-logo" aria-hidden="true">
                         <span>{entry.platform.slice(0, 2).toUpperCase()}</span>
-                        <img src={entry.iconUrl} alt="" loading="lazy" />
+                        <img
+                          src={entry.id === 'gmgn-web3'
+                            ? `${import.meta.env.BASE_URL}gmgn-frog-coin.webp`
+                            : entry.iconUrl}
+                          alt=""
+                          loading="lazy"
+                        />
                       </span>
                       <div>
                         <div className="entry-platform-line">

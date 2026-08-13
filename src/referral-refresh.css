@@ -13,11 +13,13 @@ body {
 }
 .referral-topbar { background: rgba(7,9,8,.88); border-bottom-color: #252a27; backdrop-filter: blur(18px); }
 .referral-nav a[aria-current="page"], .referral-nav a:hover { background: #171b18; }
-.rebate-motion { height: clamp(240px,31svh,330px); padding: 34px 46px; border: 1px solid #29302b; border-top: 0; border-radius: 0 0 20px 20px; background: linear-gradient(135deg,#0d110f,#080a09 64%,#101b15); }
+.rebate-motion { min-height: 300px; height: auto; padding: 38px 46px; border: 1px solid #29302b; border-top: 0; border-radius: 0 0 20px 20px; background: linear-gradient(135deg,#0d110f,#080a09 64%,#101b15); overflow: visible; grid-template-columns: minmax(500px,1.12fr) minmax(400px,.88fr); gap: 32px; }
 .rebate-motion::before { width: 100%; background: var(--green); }
 .rebate-motion::after { display: none; }
-.rebate-motion__rate { margin: 7px 0 -3px; color: var(--green); font: 780 clamp(64px,8vw,104px)/.9 "IBM Plex Sans Variable",sans-serif; letter-spacing: -.07em; }
-.rebate-motion__intro h1 { margin-top: 12px; font-size: clamp(25px,3vw,38px); letter-spacing: -.035em; }
+.rebate-motion__intro { position: relative; min-height: 220px; padding-left: 142px; display: flex; flex-direction: column; justify-content: center; }
+.rebate-motion__mascot { position: absolute; left: 0; top: 50%; width: 120px; height: 120px; border: 1px solid rgba(80,245,166,.32); border-radius: 16px; object-fit: cover; transform: translateY(-50%); image-rendering: pixelated; box-shadow: 0 18px 50px rgba(0,0,0,.35), 0 0 40px rgba(33,232,137,.10); }
+.rebate-motion__rate { margin: 7px 0 -3px; color: var(--green); font: 780 clamp(64px,7vw,96px)/.9 "IBM Plex Sans Variable",sans-serif; letter-spacing: -.07em; }
+.rebate-motion__intro h1 { margin-top: 12px; font-size: clamp(25px,2.5vw,34px); letter-spacing: -.035em; white-space: nowrap; }
 .rebate-motion__intro p { color: #a2aca4; font-size: 11px; }
 .rebate-motion__metric strong { font-size: clamp(32px,4vw,48px); }
 .referral-directory { padding-top: 38px; }
@@ -47,4 +49,11 @@ body {
 .referral-state { color: #d8dfda; background: #070908; }
 @media (max-width: 800px) {
   .rebate-motion { height: auto; grid-template-columns: 1fr; gap: 35px; padding: 32px 24px; }
+  .rebate-motion__intro { min-height: 170px; padding-left: 136px; }
+  .rebate-motion__mascot { width: 116px; height: 116px; }
+  .rebate-motion__intro h1 { white-space: normal; }
+}
+@media (max-width: 520px) {
+  .rebate-motion__intro { min-height: 0; padding-left: 0; align-items: flex-start; }
+  .rebate-motion__mascot { position: static; width: 92px; height: 92px; margin-bottom: 14px; transform: none; }
 }
